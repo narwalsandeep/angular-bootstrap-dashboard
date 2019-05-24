@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  server: 'http://piotr-api.local',
+  server: 'http://api.com',
 
 };
