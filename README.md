@@ -1,6 +1,8 @@
 Angular + Bootstrap Free admin theme Startup
 -------------------------------------------
 
+![](1.png)
+![](2.png)
 
 - Simple git clone, npm instal and it should be running on http://localhost:8081
 - Code have various modules like auth, components, helper, services, etc.

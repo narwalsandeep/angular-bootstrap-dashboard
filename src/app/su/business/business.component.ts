@@ -43,9 +43,6 @@ export class BusinessComponent implements OnInit {
       name: {
         title: "Name"
       },
-      device_count:{
-        title: "Device Count"
-      },
       phone: {
         title: "Phone"
       },
