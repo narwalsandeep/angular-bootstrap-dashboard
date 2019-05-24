@@ -1,0 +1,8 @@
+<div *ngIf="message" class="text text-center" ><br>		
+<span  class=" alert alert-dismissible fade show" role="alert" style="font-size:14px;"
+	[ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">{{message.text}}
+	<button style="top:-3px" type="button" class="close" >
+		<span aria-hidden="true" (click)="close(message)">&times;</span>
+	</button>
+</span>
+</div>

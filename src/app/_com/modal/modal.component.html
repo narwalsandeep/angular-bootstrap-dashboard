@@ -1,0 +1,13 @@
+
+<ngx-smart-modal identifier="modalId" >
+    <h6 class="h4 text text-danger">Are you Sure ?</h6>
+    <hr>
+    <h6 class="h6 alert">
+      Warning: This will also delete all related data for this item !
+    </h6>
+    <hr>
+    <button  (click)="onClick_Close();" class="btn btn-md btn-secondary float-left" >Cancel</button>
+    <button (click)="onClick_Submit();"  class="btn btn-md btn-danger float-right" >Confirm !</button>
+  <!--   <button (click)="onClick_Delete();deleteModal.close()"  class="btn btn-md btn-danger float-right" >Confirm !</button>
+  -->
+  </ngx-smart-modal>
