@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  server: 'http://piotr.local',
+  server: 'http://api.local',
 
 };
 
