@@ -23,6 +23,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             }
              
             const error = err.error;
+            console.log("HTTP error intercepted below:");
             console.log(err.error);
             if(error){
                 return throwError("Server Error occurred !");
