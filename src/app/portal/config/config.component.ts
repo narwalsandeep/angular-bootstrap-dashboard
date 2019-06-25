@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BusinessService } from '../../_service/business.service';
 import { AuthHelper } from '../../_helper/auth';
 import { Router, ActivatedRoute } from '@angular/router';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-config',
@@ -59,6 +61,10 @@ export class ConfigComponent implements OnInit {
     this.action = "Select An Item";
     this.title = "CONFIGURATOR";
 
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.selected_obj.fields, event.previousIndex, event.currentIndex);
   }
 
   /**

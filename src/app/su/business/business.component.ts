@@ -195,7 +195,7 @@ export class BusinessComponent implements OnInit {
     if(this.edit_id > 0 && this.is_edit){
       this.entity.id = this.edit_id;
     }
-    this.entityService.createOrUpdate(this.entity).subscribe(data => {
+    this.entityService.create(this.entity).subscribe(data => {
       let temp: any;
       temp = data;
       if (temp.success) {

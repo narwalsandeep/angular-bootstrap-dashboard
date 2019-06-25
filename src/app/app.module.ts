@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MasterComponent } from './_layout/master/master.component';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { SigninComponent as SigninLayoutComponent } from './_layout/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
@@ -73,6 +72,7 @@ import { TimeComponent } from './master/el/time/time.component';
 import { EmailComponent } from './master/el/email/email.component';
 import { FileComponent } from './master/el/file/file.component';
 import { CurrencyComponent } from './master/el/currency/currency.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 const customNotifierOptions: NotifierOptions = {
@@ -163,9 +163,9 @@ const customNotifierOptions: NotifierOptions = {
   imports: [
     BrowserModule,
     FormsModule,
-    Ng2SmartTableModule,
     OrderModule,
     AppRoutingModule,
+    DragDropModule,
     AngularFontAwesomeModule,
     NgxMaskModule.forRoot(),    
     NgxSmartModalModule.forRoot(),

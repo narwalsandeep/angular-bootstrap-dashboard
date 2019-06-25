@@ -62,7 +62,7 @@ export class PageComponent implements OnInit {
    */
   onClick_Save() {
     
-    this.businessService.createOrUpdate(this.el).subscribe(function(data){
+    this.businessService.create(this.el).subscribe(function(data){
       
     });
   }
