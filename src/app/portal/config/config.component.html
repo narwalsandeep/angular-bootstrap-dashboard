@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap px-2
+  page-title
+  align-items-center pt-3 pb-2 mb-2 border-bottom">
+  <h4 class="h6" *ngIf="!is_loading">{{title}} </h4>
+  <h4 class="h6" *ngIf="is_loading">loading ...</h4>
+</div>
+<div class="row no-gutters">
+  <div class="col-2 col-lg-2 col-sm-2 col-md-2 px-2">
+    <ul class="list-group">
+      <li class="list-group-item text text-primary cursor" (click)="onClick_AddMenu()" >ADD MENU</li>
+      <li class="list-group-item cursor" (click)="onClick_Item(p)" *ngFor="let p of
+        cfg?.config?.infra?.process">{{p.name | titlecase}}</li>
+    </ul>
+  </div>
+  <div class="col-10 col-md-10 pr-2">
+    <div class="card ">
+      <div class="card-header">
+        {{action | titlecase}}
+        <span *ngIf="is_obj_selected == true" class="float-right text text-primary cursor"
+          (click)="onClick_AddElement()">Add Element</span>
+      </div>
+      <div class="card-body">
+
+          <div class="" *ngIf="is_add_element == true || is_edit_element == true">
+            <app-element [config]="selected_obj" [editing_el]="editing_el" ></app-element>
+          </div>
+          <div class="" *ngIf="is_add_obj == true">
+            <label>Menu Name:</label>
+            <input class="form-control"  maxlength="100" [(ngModel)]="new_obj_name">
+            <hr >
+            <button class="btn btn-primary"  (click)="onSubmit_AddMenu()"> Submit</button>
+          </div>
+          
+        <div  *ngIf="is_obj_selected == true">
+          <div class="pt-3 pb-1 mb-1 bg-light " *ngFor="let f of selected_obj?.fields">
+            <div class="form-group col-md-6">
+              <label *ngIf="f.type !='checkbox'">{{f.label}} </label>  <small (click)="onClick_EditElement(f)" class="cursor float-right btn btn-sm text text-muted">[click to edit this field]</small>
+              <textarea *ngIf="f.type=='textarea'"
+                placeholder="{{f.placeholder}}"
+                class="form-control" [(ngModel)]="el[f.name]">
+              </textarea>
+              <input *ngIf="f.type=='text'" placeholder="{{f.placeholder}}"
+                class="form-control" [(ngModel)]="el[f.name]">
+              <select *ngIf="f.type=='select'" class="form-control"
+                [(ngModel)]="el[f.name]">
+                <option *ngFor="let o of f.options" [value]="o.name">{{o.label}}</option>
+              </select>
+              <div *ngIf="f.type=='checkbox'" class="custom-control
+                custom-checkbox custom-checkbox-switch">
+                <input type="hidden" [(ngModel)]="el[f.name]">
+                <input type="checkbox" class="custom-control-input"
+                  [checked]="el[f.name] === _bool[0].value"
+                  (change)="$event.target.checked? (el[f.name]=
+                  _bool[0].value):(el[f.name]= _bool[1].value)"
+                  id="el[f.name]">
+                <label class="custom-control-label" style="padding-top:2px;"
+                  for="el[f.name]"> {{f.label}} </label>
+                  <button class="btn btn-sm btn-default">EDIT</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

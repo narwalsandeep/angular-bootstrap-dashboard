@@ -1,0 +1,17 @@
+<div class="bg-light pt-3 pb-1 mt-2">
+  <div class="col-12 form-group">
+    <label>Name of this attribute:</label>
+    <input class="form-control" [(ngModel)]="el.name">
+    <small class="text text-muted">For example: retail_price, sale_price, etc</small>
+  </div>
+</div>
+<div class="bg-light pt-3 pb-1 mt-2">
+  <div class="col-12 form-group">
+    <label>Label of this attribute:</label>
+    <input class="form-control" [(ngModel)]="el.label">
+    <small class="text text-muted">For example: Retail Price, Sale Price, etc</small>
+  </div>
+</div>
+<hr>
+
+<button (click)="onClick_Submit()" class="btn btn-primary">Submit</button>

@@ -38,6 +38,7 @@
     "ng2-smart-table": "*",
     "ngx-color-picker": "^6.8.0",
     "ngx-mask": "^6.5.18",
+    "ngx-order-pipe": "^2.0.2",
     "ngx-smart-modal": "^7.1.1",
     "popper.js": "^1.14.5",
     "primeng": "6.1.0",

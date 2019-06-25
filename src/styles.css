@@ -17,6 +17,10 @@ body {
 	tr {
     cursor: pointer;
 	}
+	.cursor{
+		cursor: pointer;
+
+	}
 
 	.notifier__notification--material{
 		padding-top:4px;

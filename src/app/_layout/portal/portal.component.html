@@ -2,57 +2,65 @@
   <div class="row">
     <nav class="col-md-3 col-lg-1 d-none d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
-        <h3 class="h5  justify-content-between
-           text text-center px-4 mt-2">
-           <span>LOGO.</span>
-          </h3>
+        <h3 class="h5 justify-content-between
+          text text-center px-4 mt-2">
+          <span><strong class="text text-danger">nu</strong>.CRM</span>
+        </h3>
+        <hr>
         <h6 class="sidebar-heading d-flex justify-content-between
           align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Manage</span>
         </h6>
+        <!--
+          https://fontawesome.com/v4.7.0/icons/
+        -->
         <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/portal/dashboard']">
-              <fa name="line-chart" ></fa> Dashboard
+              <fa name="line-chart"></fa> Dashboard
             </a>
           </li>
-          <!-- Below Customer and Agent are for demo only, no DB exists for them
-          But if we create user_type in user table, it should work-->
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/portal/user',{user_type:'customer'}]">
-              <fa name="users" ></fa> Customer
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/portal/user',{'user_type':'agent'}]">
-              <fa name="user" ></fa> Agent
+          <li class="nav-item" *ngFor="let d of defaults.config.infra.process">
+            <a class="nav-link" [routerLink]="['/portal/page',{'i':d.name}]">
+              <fa name="{{d.icon}}"></fa> {{d.label}}
             </a>
           </li>
         </ul>
+        <hr>
         <h6 class="sidebar-heading d-flex justify-content-between
           align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Global</span>
         </h6>
         <ul class="nav flex-column mb-2">
           <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/portal/config']">
+              <fa name="cubes"></fa> Config
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/portal/contact']">
+              <fa name="address-card-o"></fa> Contacts
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" [routerLink]="['/portal/settings']">
-              <fa name="cog" ></fa> Settings
+              <fa name="cog"></fa> Settings
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/portal/security']">
-              <fa name="lock" ></fa> Security
+              <fa name="lock"></fa> Security
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link text text-danger" [routerLink]="['/signout']">
-              <fa name="sign-out" ></fa> Signout</a>
+              <fa name="sign-out"></fa> Signout</a>
           </li>
         </ul>
       </div>
     </nav>
 
-    <main  class="col-md-9 ml-sm-auto col-lg-11 px-0">
+    <main class="col-md-9 ml-sm-auto col-lg-11 px-0">
       <router-outlet></router-outlet>
     </main>
   </div>

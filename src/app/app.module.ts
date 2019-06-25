@@ -59,6 +59,20 @@ import { UserComponent as SuUserComponent } from './su/user/user.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { SignoutComponent } from './auth/signout/signout.component';
 import { ModalComponent as ComModalComponent } from './_com/modal/modal.component';
+import { PageComponent as PortalPageComponent } from './portal/page/page.component';
+import { ConfigComponent  as PortalConfigComponent} from './portal/config/config.component';
+import { ElementComponent } from './portal/config/element/element.component';
+import { OrderModule } from 'ngx-order-pipe';
+import { TextboxComponent } from './master/el/textbox/textbox.component';
+import { DropdownComponent } from './master/el/dropdown/dropdown.component';
+import { TextareaComponent } from './master/el/textarea/textarea.component';
+import { RadioComponent } from './master/el/radio/radio.component';
+import { CheckboxComponent } from './master/el/checkbox/checkbox.component';
+import { DateComponent } from './master/el/date/date.component';
+import { TimeComponent } from './master/el/time/time.component';
+import { EmailComponent } from './master/el/email/email.component';
+import { FileComponent } from './master/el/file/file.component';
+import { CurrencyComponent } from './master/el/currency/currency.component';
 
 
 const customNotifierOptions: NotifierOptions = {
@@ -110,7 +124,7 @@ const customNotifierOptions: NotifierOptions = {
     SigninLayoutComponent,
     SignupComponent,
     SigninComponent,
-        
+    PortalPageComponent,
     SigninLayoutComponent,
     AlertComponent,
     PageNotFoundComponent,
@@ -132,12 +146,25 @@ const customNotifierOptions: NotifierOptions = {
     PortalComponent,
     PortalUserComponent,
     SignoutComponent,
-    ComModalComponent
+    ComModalComponent,
+    PortalConfigComponent,
+    ElementComponent,
+    TextboxComponent,
+    DropdownComponent,
+    TextareaComponent,
+    RadioComponent,
+    CheckboxComponent,
+    DateComponent,
+    TimeComponent,
+    EmailComponent,
+    FileComponent,
+    CurrencyComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     Ng2SmartTableModule,
+    OrderModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
     NgxMaskModule.forRoot(),    

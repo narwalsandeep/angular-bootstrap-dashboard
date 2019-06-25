@@ -10,6 +10,9 @@ import { MainComponent as PortalDashboardMainComponent } from './portal/dashboar
 import { SecurityComponent as PortalSecurityComponent } from './portal/security/security.component';
 import { SettingsComponent as PortalSettingsComponent } from './portal/settings/settings.component';
 import { UserComponent as PortalUserComponent } from './portal/user/user.component';
+import { ConfigComponent as PortalConfigComponent } from './portal/config/config.component';
+
+import { PageComponent as PortalPageComponent } from './portal/page/page.component';
 
 import { BusinessComponent as SuBusinessComponent } from './su/business/business.component';
 import { UserComponent as SuUserComponent } from './su/user/user.component';
@@ -46,6 +49,14 @@ const routes: Routes = [
       {
         path: "dashboard",
         component: PortalDashboardMainComponent
+      },
+      {
+        path: "page",
+        component: PortalPageComponent
+      },
+      {
+        path: "config",
+        component: PortalConfigComponent
       },
       {
         path: "user",

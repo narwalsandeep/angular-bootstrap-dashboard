@@ -31,7 +31,7 @@ export class SigninComponent implements OnInit {
       let temp: any;
       temp = data;
       if(temp.success){
-        if(temp.payload.user_type != 'su'){
+        if(temp.payload.user_type == 'su'){
           this.router.navigateByUrl("/su/business");       
         }
         else{

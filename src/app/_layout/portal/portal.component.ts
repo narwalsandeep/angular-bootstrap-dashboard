@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {infra} from '../../../assets/infra';
 
 @Component({
   selector: 'app-portal',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PortalComponent implements OnInit {
 
-  constructor() { }
+  defaults :any;
+  constructor() {
+    this.defaults = infra;
+   }
 
   ngOnInit() {
   }

@@ -40,9 +40,33 @@ export class BusinessService {
      * 
      * @param _p 
      */
-    createOrUpdate(_p) {
+    create(_p) {
         let body = this.paramsHelper.make(this._getBody(), _p);
         return this.http.post(environment.server+"/business",body, { headers: this.paramsHelper.makeHeadersWithAuth() })
+              .pipe(map(data => {
+                  return data;
+              }));
+    }
+
+    /**
+     * 
+     * @param _p 
+     */
+    update(_p) {
+        let body = this.paramsHelper.make(this._getBody(), _p);
+        return this.http.put(environment.server+"/business",body, { headers: this.paramsHelper.makeHeadersWithAuth() })
+              .pipe(map(data => {
+                  return data;
+              }));
+    }
+
+    /**
+     * 
+     * @param _p 
+     */
+    updateConfig(_p) {
+        let body = this.paramsHelper.make(this._getBody(), _p);
+        return this.http.put(environment.server+"/business/update-config",body, { headers: this.paramsHelper.makeHeadersWithAuth() })
               .pipe(map(data => {
                   return data;
               }));

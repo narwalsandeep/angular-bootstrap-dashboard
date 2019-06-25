@@ -46,7 +46,7 @@ export class AuthService {
      */
     signin(_p) {
         let body = this.params.make(this._getBody(),_p);
-        return this.http.put(environment.server+"/auth",body, { headers: this.headers })
+        return this.http.put(environment.server+"/login",body, { headers: this.headers })
             .pipe(map(data => {
                 let temp:any;
                 temp = data;
