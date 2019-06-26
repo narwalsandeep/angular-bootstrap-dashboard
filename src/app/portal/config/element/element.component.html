@@ -2,23 +2,27 @@
   your need.</label>
 <div class="row">
   <div class="col">
-      <div class="form-check form-check-inline" *ngFor="let e of el_list">
-        <!-- below orderBy is working well
+    <div class="form-check form-check-inline" *ngFor="let e of el_list">
+      <!-- below orderBy is working well
         <div class="form-check form-check-inline" *ngFor="let e of custom_el |
         orderBy: type">
         -->
       <input class="form-check-input" (click)="onClick_CustomEl(e)"
-        [(ngModel)]="selected_type" [value]="e.type" id="{{e.type}}" type="radio">
+        [(ngModel)]="selected_type" [value]="e.type" id="{{e.type}}"
+        type="radio">
       <label class="form-check-label" for="{{e.type}}">{{e.type}}</label>
     </div>
   </div>
 </div>
 <hr>
 <div class="" *ngIf="selected_type=='text'">
-  <app-textbox ></app-textbox>
+  <app-textbox [config]="config" [editing_el]="editing_el"></app-textbox>
 </div>
 <div class="" *ngIf="selected_type=='dropdown'">
   <app-dropdown></app-dropdown>
+</div>
+<div class="" *ngIf="selected_type=='separator'">
+  <app-separator></app-separator>
 </div>
 <div class="" *ngIf="selected_type=='textarea'">
   <app-textarea></app-textarea>
@@ -39,5 +43,5 @@
   <app-time></app-time>
 </div>
 <div class="" *ngIf="selected_type=='currency'">
-  <app-currency [config]="config"  [editing_el]="editing_el"></app-currency>
+  <app-currency [config]="config" [editing_el]="editing_el"></app-currency>
 </div>

@@ -1,24 +1,43 @@
-<div class="bg-light pt-3 pb-1">
+<div class="bg-light pt-3 pb-1 mt-2">
   <div class="col-12 form-group">
-    <label>Whats the name of this attribute:</label>
-    <input class="form-control" [(ngModel)]="el.name">
-    <small class="text text-muted">For example: First Name, Mobile, Address, etc</small>
+    <label>Label of this attribute:</label>
+    <input class="form-control" maxlength="100" [dropSpecialCharacters]="true"
+      mask="" [(ngModel)]="el.label">
+    <small class="text text-muted">For example: First Name, Sale Price, Address
+      Line 1, etc</small>
   </div>
 </div>
 <div class="bg-light pt-3 pb-1 mt-2">
   <div class="col-12 form-group">
-    <label>Whats the max length for its value:</label>
-    <input class="form-control" [(ngModel)]="el.max_length">
-    <small class="text text-muted">For example: 20</small>
+    <label>Name of this attribute:</label>
+    <input class="form-control" mask="A*" maxlength="100" [(ngModel)]="el.name">
+    <small class="text text-danger"> Only alpha-numeric allowed. </small> <small
+      class="text text-muted">For example: FirstName, RetailPrice, AddressLine1,
+      etc.</small>
   </div>
 </div>
 <div class="bg-light pt-3 pb-1 mt-2">
-    <div class="col-12 form-group">
-      <div class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" [(ngModel)]="el.required" id="required">
-      <label style="padding-top:2px;" class="custom-control-label" for="required">Is This A Required Field?</label>
+  <div class="row col form-group">
+    <div class="col-lg-6 col-md-6 col-sm-6">
+      <label>Is this a read-only field?</label>
+      <select class="form-control" [(ngModel)]="el.readonly">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select>
+      <small class="text text-muted">This restriction will not apply to
+        Administrator</small>
     </div>
+  </div>
 </div>
+<div class="bg-light pt-3 pb-1 mt-2">
+  <div class="col-4 form-group">
+    <label>Size or Width of this field on the form:</label>
+    <select class="form-control" [(ngModel)]="el.size">
+      <option value="col-3">Small</option>
+      <option value="col-6">Medium</option>
+      <option value="col-12">Large</option>
+    </select>
+  </div>
 </div>
 <hr>
-<button class="btn btn-primary">Submit</button>
+<button (click)="onClick_Submit()" class="btn btn-primary">Submit</button>

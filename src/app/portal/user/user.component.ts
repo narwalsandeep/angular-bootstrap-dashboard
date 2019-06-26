@@ -14,7 +14,7 @@ import { ModalComponent } from '../../_com/modal/modal.component';
 })
 export class UserComponent implements OnInit {
 
-  @ViewChild(ModalComponent) modal:ModalComponent;
+  @ViewChild(ModalComponent,{static: false}) modal:ModalComponent;
 
   is_on_new = false;
   is_on_list = false;

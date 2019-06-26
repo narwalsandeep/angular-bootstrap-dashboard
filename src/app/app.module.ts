@@ -31,7 +31,7 @@ import { LocaleHelper } from './_helper/locale';
 import { FileHelper } from './_helper/file';
 import { CalendarHelper } from './_helper/calendar';
 import { HttpFormEncodingCodec } from './_helper/http.form.codec';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS,HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 import { PageNotFoundComponent } from './_support/page-not-found/page-not-found.component';
 import { ResetPasswordComponent } from './_support/reset-password/reset-password.component';
@@ -54,6 +54,7 @@ import { SecurityComponent as PortalSecurityComponent } from './portal/security/
 import { UserComponent as PortalUserComponent } from './portal/user/user.component';
 import { PortalComponent } from './_layout/portal/portal.component';
 import { UserComponent as SuUserComponent } from './su/user/user.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { SignoutComponent } from './auth/signout/signout.component';
@@ -73,6 +74,10 @@ import { EmailComponent } from './master/el/email/email.component';
 import { FileComponent } from './master/el/file/file.component';
 import { CurrencyComponent } from './master/el/currency/currency.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { SeparatorComponent } from './master/el/separator/separator.component';
+import { MenuComponent } from './portal/config/menu/menu.component';
+import { FormComponent } from './master/menu/form/form.component';
+import { HtmlComponent } from './master/menu/html/html.component';
 
 
 const customNotifierOptions: NotifierOptions = {
@@ -158,13 +163,19 @@ const customNotifierOptions: NotifierOptions = {
     TimeComponent,
     EmailComponent,
     FileComponent,
-    CurrencyComponent
+    CurrencyComponent,
+    SeparatorComponent,
+    MenuComponent,
+    FormComponent,
+    HtmlComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     OrderModule,
     AppRoutingModule,
+    Ng2SmartTableModule,
+    HttpClientModule,
     DragDropModule,
     AngularFontAwesomeModule,
     NgxMaskModule.forRoot(),    

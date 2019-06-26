@@ -1,0 +1,28 @@
+<div class="bg-light pt-3 pb-1 mt-2">
+	<div class="col-12 form-group">
+		<label>Name</label>
+		<input class="form-control" maxlength="100" [dropSpecialCharacters]="true"
+		mask="" [(ngModel)]="el.label">
+		<small class="text text-muted">For example: Clients, Portfolio, Gallery, etc
+		Line 1, etc</small>
+	</div>
+</div>
+<div class="bg-light pt-3 pb-1 mt-2">
+	<div class="col-4 form-group">
+		<label>This is Sub Item Of:</label>
+		<select class="form-control" [(ngModel)]="el.parent">
+		</select>
+	</div>
+</div>
+<div class="bg-light pt-3 pb-1 mt-2">
+	<div class="col-4 form-group">
+		<label>Status</label>
+		<select class="form-control" [(ngModel)]="el.statuc">
+		<option value="col-6">Active</option>
+		<option value="col-12">InActive</option>
+		</select>
+	</div>
+</div>
+<hr>
+<button (click)="onClick_Submit()" class="btn btn-primary">Submit</button>
+	
