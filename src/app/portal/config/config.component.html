@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap px-2
   page-title
   align-items-center pt-3 pb-2 mb-2 border-bottom">
-  <h4 class="h6" *ngIf="!is_loading">{{title}} </h4>
+  <h4 class="h6" *ngIf="!is_loading">CONFIGURATOR <small class="text text-muted">Build your pages, forms, fields, settings, etc.</small></h4>
   <h4 class="h6" *ngIf="is_loading">loading ...</h4>
 </div>
 <div class="row no-gutters">
@@ -17,7 +17,7 @@
   <div class="col-7 col-lg-7 col-md-6 col-sm-6 pr-2">
     <div class="card">
       <div class="card-header">
-        {{action | titlecase}}
+        {{ action | titlecase }}
         <span *ngIf="is_obj_selected == true" class="float-right text
           text-primary cursor"
           (click)="onClick_AddElement()">Add Element</span>

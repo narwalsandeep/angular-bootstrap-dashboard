@@ -77,7 +77,6 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { SeparatorComponent } from './master/el/separator/separator.component';
 import { MenuComponent } from './portal/config/menu/menu.component';
 import { FormComponent } from './master/menu/form/form.component';
-import { HtmlComponent } from './master/menu/html/html.component';
 
 
 const customNotifierOptions: NotifierOptions = {
@@ -166,8 +165,7 @@ const customNotifierOptions: NotifierOptions = {
     CurrencyComponent,
     SeparatorComponent,
     MenuComponent,
-    FormComponent,
-    HtmlComponent
+    FormComponent
   ],
   imports: [
     BrowserModule,

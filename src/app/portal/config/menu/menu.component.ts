@@ -8,13 +8,13 @@ import { Component, OnInit, Input, SimpleChange, SimpleChanges } from '@angular/
 export class MenuComponent implements OnInit {
 
   @Input() editing_menu: any;
-  selected_type = "html";
+  selected_type = "form";
   menu_list = [
     {
-      "type": "static"
+      "type": "form"
     },
     {
-      "type": "form"
+      "type": "static"
     },
     {
       "type": "grid"
