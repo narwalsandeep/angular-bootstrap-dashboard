@@ -1,0 +1,23 @@
+<div class="card mr-2">
+	<div class="card-header px-2">
+		Add
+	</div>
+	<div class="card-header px-2">
+		<label class="text text-muted">Select the type of object you want to create:</label>
+		<div class="row">
+			<div class="col">
+				<div class="form-check form-check-inline" *ngFor="let m of types">
+					<input class="form-check-input" (click)="onClick_CustomMenu(e)"
+						[(ngModel)]="selected" [value]="m.name" id="{{m.name}}"
+						type="radio">
+					<label class="form-check-label" for="{{m.name}}">{{m.name}}</label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="px-2">
+		<div class="" *ngIf="selected=='form'">
+			<app-master-object-form [object]="object"></app-master-object-form>
+		</div>
+	</div>
+</div>

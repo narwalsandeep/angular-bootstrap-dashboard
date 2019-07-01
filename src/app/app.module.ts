@@ -63,20 +63,23 @@ import { PageComponent as PortalPageComponent } from './portal/page/page.compone
 import { ConfigComponent  as PortalConfigComponent} from './portal/config/config.component';
 import { ElementComponent } from './portal/config/element/element.component';
 import { OrderModule } from 'ngx-order-pipe';
-import { TextboxComponent } from './master/el/textbox/textbox.component';
-import { DropdownComponent } from './master/el/dropdown/dropdown.component';
-import { TextareaComponent } from './master/el/textarea/textarea.component';
-import { RadioComponent } from './master/el/radio/radio.component';
-import { CheckboxComponent } from './master/el/checkbox/checkbox.component';
-import { DateComponent } from './master/el/date/date.component';
-import { TimeComponent } from './master/el/time/time.component';
-import { EmailComponent } from './master/el/email/email.component';
-import { FileComponent } from './master/el/file/file.component';
-import { CurrencyComponent } from './master/el/currency/currency.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import { SeparatorComponent } from './master/el/separator/separator.component';
-import { MenuComponent } from './portal/config/menu/menu.component';
-import { FormComponent } from './master/menu/form/form.component';
+import { TextboxComponent } from './master/element/textbox/textbox.component';
+import { DropdownComponent } from './master/element/dropdown/dropdown.component';
+import { TextareaComponent } from './master/element/textarea/textarea.component';
+import { RadioComponent } from './master/element/radio/radio.component';
+import { CheckboxComponent } from './master/element/checkbox/checkbox.component';
+import { DateComponent } from './master/element/date/date.component';
+import { TimeComponent } from './master/element/time/time.component';
+import { EmailComponent } from './master/element/email/email.component';
+import { FileComponent } from './master/element/file/file.component';
+import { CurrencyComponent } from './master/element/currency/currency.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { SeparatorComponent } from './master/element/separator/separator.component';
+import { ObjectComponent as PortalConfigObjectComponent } from './portal/config/object/object.component';
+import { FormComponent as MasterObjectFormComponent } from './master/object/form/form.component';
+import { LayoutComponent as PortalConfigObjectLayoutComponent } from './portal/config/object/layout/layout.component';
+import { SettingsComponent as PortalConfigObjectSettingsComponent } from './portal/config/object/settings/settings.component';
+import { TriggersComponent as PortalConfigObjectTriggersComponent } from './portal/config/object/triggers/triggers.component';
 
 
 const customNotifierOptions: NotifierOptions = {
@@ -164,8 +167,11 @@ const customNotifierOptions: NotifierOptions = {
     FileComponent,
     CurrencyComponent,
     SeparatorComponent,
-    MenuComponent,
-    FormComponent
+    PortalConfigObjectComponent,
+    MasterObjectFormComponent,
+    PortalConfigObjectLayoutComponent,
+    PortalConfigObjectSettingsComponent,
+    PortalConfigObjectTriggersComponent
   ],
   imports: [
     BrowserModule,

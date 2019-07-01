@@ -4,17 +4,16 @@ import { BusinessService } from '../../../_service/business.service';
 import { AlertService } from '../../../_service/_alert.service';
 
 @Component({
-  selector: 'app-form',
+  selector: 'app-master-object-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
 
 
-  default = { "name": "", "status": "Active", "parent":"","type": "form" };
-  menu: any;
-  @Input() editing_menu: any;
-  is_edit_mode = false;
+  default = { "icon":"","parent":"","label":"","name": "", "status": "Active","type": "form" };
+  @Input() object: any;
+  is_editing_object = false;
 
   constructor(
     private router: Router,
@@ -23,36 +22,26 @@ export class FormComponent implements OnInit {
   ) {
 
     this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; };
-    this._reset();
   }
 
   ngOnInit() {
-    if (this.editing_menu != undefined) {
-      this.menu = this.editing_menu;
-      this.is_edit_mode = true;
-    }
-  }
-
-  _reset() {
-    this.menu = this.default;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['editing_menu'] != undefined) {
-      if (changes['editing_menu'].currentValue != undefined)
-        this.editing_menu = changes['editing_menu'].currentValue;
-    }
-    if (this.editing_menu == undefined) {
-      this._reset();
-    }
-    else {
-      this.menu = this.editing_menu;
+    if (changes['object'] != undefined) {
+      if (changes['object'].currentValue != undefined){
+        this.object = changes['object'].currentValue;
+        this.is_editing_object = true;
+      }
+      else{
+        this.object = this.default;
+      }
     }
   }
 
   onClick_Submit() {
     if (this._validate()) {
-      let _p = { "edit": this.is_edit_mode, "inject_into_el": "process", "el": JSON.stringify(this.menu) };
+      let _p = { "edit": this.is_editing_object, "inject_into_object": true, "object": JSON.stringify(this.object) };
       this.businessService.updateConfig(_p).subscribe(data => {
         let temp: any;
         temp = data;
@@ -70,11 +59,11 @@ export class FormComponent implements OnInit {
   }
 
   _validate() {
-    if (this.menu.name == "") {
+    if (this.object.name == "") {
       this._alert.error("Name cannot be empty");
       return false;
     }
-    if (this.menu.label == "") {
+    if (this.object.label == "") {
       this._alert.error("Label cannot be empty");
       return false;
     }

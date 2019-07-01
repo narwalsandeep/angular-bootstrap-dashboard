@@ -1,0 +1,69 @@
+<div class="row">
+	<div class="col-12">
+		<span  class="float-right text
+			text-primary cursor"
+			(click)="onClick_AddElement()">Add Element</span>
+	</div>
+</div>
+<div class="" >
+	<app-element [config]="selected_obj" [editing_el]="editing_el"></app-element>
+</div>
+
+<div class="row" >
+	<div class="pt-1 form-row {{f.size}}"*ngFor="let f of
+		selected_obj?.fields">
+		<div class="form-group col-lg-12 col-md-12 col-md-12">
+			<!-- label -->
+			<label *ngIf="f.type !='checkbox'">{{f.label}} </label>
+			<!-- textarea -->
+			<textarea *ngIf="f.type=='textarea'"
+				placeholder="{{f.placeholder}}"
+				class="form-control" [(ngModel)]="el[f.name]">
+			</textarea>
+			<!-- text -->
+			<input *ngIf="f.type=='text'" placeholder="{{f.placeholder}}"
+				class="form-control" [(ngModel)]="el[f.name]">
+			<!-- select -->
+			<select *ngIf="f.type=='select'" class="form-control"
+				[(ngModel)]="el[f.name]">
+				<option *ngFor="let o of f.options" [value]="o.name">{{o.label}}</option>
+			</select>
+			<!-- checkbox -->
+			<div *ngIf="f.type=='checkbox'" class="custom-control
+				custom-checkbox custom-checkbox-switch">
+				<input type="hidden" [(ngModel)]="el[f.name]">
+				<input type="checkbox" class="custom-control-input"
+					[checked]="el[f.name] === _bool[0].value"
+					(change)="$event.target.checked? (el[f.name]=
+					_bool[0].value):(el[f.name]= _bool[1].value)"
+					id="el[f.name]">
+				<label class="custom-control-label" style="padding-top:2px;"
+					for="el[f.name]"> {{f.label}} </label>
+				<button class="btn btn-sm btn-default">EDIT</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="col-3 col-lg-3 col-md-4 col-sm-4">
+    <small> Sort or Edit fields here.</small>
+    <div cdkDropList
+      (cdkDropListDropped)="drop($event)">
+      <div class="border bg-light pb-1 pt-1 pl-1 pr-1 mb-1 mr-2" *ngFor="let f
+        of
+        selected_obj?.fields" cdkDrag>
+        <div class="float-right cursor pb-2" cdkDragHandle>
+          <svg width="24px" fill="#999" viewBox="0 0 24 24">
+            <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14
+              2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+            <path d="M0 0h24v24H0z" fill="none"></path>
+          </svg>
+        </div>
+        {{f.name}}&nbsp;<small
+          (click)="onClick_EditElement(f)" class="cursor text text-info">[edit]</small>&nbsp;<small
+          (click)="onClick_TryDelete(f)" class="cursor text text-danger">[delete]</small>
+      </div>
+    </div>
+  </div>
+

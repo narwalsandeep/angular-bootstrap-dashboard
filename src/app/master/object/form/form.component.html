@@ -1,0 +1,42 @@
+<div class="bg-light pt-3 pb-1 mt-2">
+	<div class="col-12 form-group">
+		<label>Label</label>
+		<input class="form-control" maxlength="100" [(ngModel)]="object.label">
+		<small class="text text-muted">For example: Clients, Portfolio, Gallery, etc
+		Line 1, etc</small>
+	</div>
+</div>
+<div class="bg-light pt-3 pb-1 mt-2">
+	<div class="col-12 form-group">
+		<label>Name</label>
+		<input class="form-control" mask="A*" maxlength="200" 
+		[(ngModel)]="object.name">
+		<small class="text text-danger">Only alpha-numeric allowed. </small> <small class="text text-muted">For example: clients, portfolio, gallery, etc
+		Line 1, etc</small>
+	</div>
+</div>
+
+<!--<div class="bg-light pt-3 pb-1 mt-2">
+	<div class="col-4 form-group">
+		<label>This is a child object of:</label>
+		<select class="form-control" [(ngModel)]="object.parent">
+		</select>
+	</div>
+</div>
+
+-->
+<div class="bg-light pt-3 pb-1 mt-2">
+	<div class="col-4 form-group">
+		<label>Status</label>
+		<select class="form-control" [(ngModel)]="object.status">
+		<option value="Active">Active</option>
+		<option value="InActive">InActive</option>
+		</select>
+	</div>
+</div>
+<hr>
+<div class="mt-2">
+	<div class="form-group">
+		<button (click)="onClick_Submit()" class="btn btn-primary">Submit</button>
+	</div>
+</div>

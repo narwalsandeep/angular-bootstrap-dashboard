@@ -1,95 +1,73 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap px-2
   page-title
   align-items-center pt-3 pb-2 mb-2 border-bottom">
-  <h4 class="h6" *ngIf="!is_loading">CONFIGURATOR <small class="text text-muted">Build your pages, forms, fields, settings, etc.</small></h4>
+  <h4 class="h6" *ngIf="!is_loading">{{title}}<small class="text
+      text-muted"> Build your pages, processes, forms, fields, triggers, etc.</small></h4>
   <h4 class="h6" *ngIf="is_loading">loading ...</h4>
 </div>
 <div class="row no-gutters">
   <div class="col-2 col-lg-2 col-sm-2 col-md-2 px-2">
     <ul class="list-group">
-      <li class="list-group-item text text-primary cursor"
-        (click)="onClick_AddMenu()">ADD MENU</li>
-      <li class="list-group-item cursor" (click)="onClick_Item(p)" *ngFor="let p
+      <li class="text-center bg-light list-group-item text text-primary cursor"
+        (click)="onClick_AddMenu()"><fa name="plus"></fa> Add</li>
+      <li class="pt-2 pl-2 pr-2 pb-2 list-group-item cursor"
+        (click)="onClick_Item(p)" *ngFor="let p
         of
-        cfg?.config?.infra?.process">{{p.name | titlecase}}</li>
+        config?.config?.infra?.object">{{p.label}}</li>
     </ul>
   </div>
-  <div class="col-7 col-lg-7 col-md-6 col-sm-6 pr-2">
-    <div class="card">
-      <div class="card-header">
-        {{ action | titlecase }}
-        <span *ngIf="is_obj_selected == true" class="float-right text
-          text-primary cursor"
-          (click)="onClick_AddElement()">Add Element</span>
+  <div class="col-10" *ngIf="is_adding_object == true">
+    <div class="row">
+      <div class="col-12">
+          <app-object ></app-object>
       </div>
-      <div class="card-body">
-        <div class="" *ngIf="is_add_element == true || is_edit_element == true">
-          <app-element [config]="selected_obj" [editing_el]="editing_el"></app-element>
+    </div>
+  </div>
+  
+  <div class="col-10" *ngIf="is_object_selected == false && is_adding_object == false">
+    <div class="row col-12"><span class="alert alert-info">Please select an item from left.</span></div>
+  </div>
+  <div class="col-10 col-lg-10 col-md-10 col-sm-10 pr-2" *ngIf="is_object_selected == true">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-settings-tab" data-toggle="tab"
+          href="#nav-settings" role="tab" aria-controls="nav-settings"
+          aria-selected="false">Settings</a>
+          <a class="nav-item nav-link " id="nav-layout-tab"
+          data-toggle="tab" href="#nav-layout" role="tab" 
+          aria-controls="nav-layout" aria-selected="true">Layout</a>
+        <a class="nav-item nav-link" id="nav-triggers-tab" data-toggle="tab"
+          href="#nav-triggers" role="tab" aria-controls="nav-triggers"
+          aria-selected="false">Triggers</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade " id="nav-layout" role="tabpanel"
+        aria-labelledby="nav-layout-tab">
+        <div class="border border-top-0 rounded-bottom">
+          <div class="card-body">
+            <app-object-layout [object]="object"></app-object-layout>
+          </div>
         </div>
-        <div class="" *ngIf="is_add_obj == true">
-          <app-menu [editing_menu]="editing_menu"></app-menu>
+      </div>
+      <div class="tab-pane fade show active" id="nav-settings" role="tabpanel"
+        aria-labelledby="nav-settings-tab">
+        <div class="border border-top-0 rounded-bottom">
+          <div class="card-body">
+              <app-object-settings [object]="object"></app-object-settings>
+          </div>
         </div>
-
-        <div class="row" *ngIf="is_obj_selected == true">
-          <div class="pt-1 form-row  {{f.size}} " *ngFor="let f of
-            selected_obj?.fields" >
-            <div class="form-group col-lg-12 col-md-12 col-md-12">
-              <!-- label -->
-              <label *ngIf="f.type !='checkbox'">{{f.label}} </label> 
-              <!-- textarea -->
-              <textarea *ngIf="f.type=='textarea'"
-                placeholder="{{f.placeholder}}"
-                class="form-control" [(ngModel)]="el[f.name]">
-              </textarea>
-              <!-- text -->
-              <input *ngIf="f.type=='text'" placeholder="{{f.placeholder}}"
-                class="form-control" [(ngModel)]="el[f.name]">
-              <!-- select -->
-              <select *ngIf="f.type=='select'" class="form-control"
-                [(ngModel)]="el[f.name]">
-                <option *ngFor="let o of f.options" [value]="o.name">{{o.label}}</option>
-              </select>
-              <!-- checkbox -->
-              <div *ngIf="f.type=='checkbox'" class="custom-control
-                custom-checkbox custom-checkbox-switch">
-                <input type="hidden" [(ngModel)]="el[f.name]">
-                <input type="checkbox" class="custom-control-input"
-                  [checked]="el[f.name] === _bool[0].value"
-                  (change)="$event.target.checked? (el[f.name]=
-                  _bool[0].value):(el[f.name]= _bool[1].value)"
-                  id="el[f.name]">
-                <label class="custom-control-label" style="padding-top:2px;"
-                  for="el[f.name]"> {{f.label}} </label>
-                <button class="btn btn-sm btn-default">EDIT</button>
-              </div>
-            </div>
+      </div>
+      <div class="tab-pane fade" id="nav-triggers" role="tabpanel"
+        aria-labelledby="nav-triggers-tab">
+        <div class="border border-top-0 rounded-bottom">
+          <div class="card-body">
+              <app-object-triggers [object]="object"></app-object-triggers>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-3 col-lg-3 col-md-4 col-sm-4">
-    <small> Sort or Edit fields here.</small>
-    <div cdkDropList
-      (cdkDropListDropped)="drop($event)">
-      <div class="border bg-light pb-1 pt-1 pl-1 pr-1 mb-1 mr-2" *ngFor="let f of
-        selected_obj?.fields" cdkDrag>
-        <div class="float-right cursor pb-2" cdkDragHandle>
-          <svg width="24px" fill="#999" viewBox="0 0 24 24">
-            <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14
-              2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
-            <path d="M0 0h24v24H0z" fill="none"></path>
-          </svg>
-        </div>
-        {{f.name}}&nbsp;<small
-        (click)="onClick_EditElement(f)" class="cursor text text-info">[edit]</small>&nbsp;<small
-        (click)="onClick_TryDelete(f)" class="cursor text text-danger">[delete]</small>
-
-      </div>
-    </div>
-  </div>
 </div>
 
-
-<com-modal [forDelete]="true" (onSubmit)="onClick_DeleteField()" ></com-modal>
-
+<com-modal [forDelete]="true" (onSubmit)="onClick_DeleteField()"></com-modal>
