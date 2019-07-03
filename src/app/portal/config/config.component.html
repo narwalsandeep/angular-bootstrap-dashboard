@@ -8,9 +8,10 @@
 <div class="row no-gutters">
   <div class="col-2 col-lg-2 col-sm-2 col-md-2 px-2">
     <ul class="list-group">
-      <li class="text-center bg-light list-group-item text text-primary cursor"
+      <li class="text-center bg-light list-group-item text text-primary " 
         (click)="onClick_AddMenu()"><fa name="plus"></fa> Add</li>
-      <li class="pt-2 pl-2 pr-2 pb-2 list-group-item cursor"
+      <li class="pt-2 pl-2 pr-2 pb-2 list-group-item cursor " id="obj_{{p._id}}"
+        [class.active]="_id == p._id"
         (click)="onClick_Item(p)" *ngFor="let p
         of
         config?.config?.infra?.object">{{p.label}}</li>

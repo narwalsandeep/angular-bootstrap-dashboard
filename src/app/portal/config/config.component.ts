@@ -17,6 +17,7 @@ export class ConfigComponent implements OnInit {
 
   title = "";
   is_loading = false;
+  _id = "";
 
   /**
    * 
@@ -95,6 +96,25 @@ export class ConfigComponent implements OnInit {
       if(_t.is_object_selected){
         _t._assignValues();
       }
+    });
+  }
+
+  /**
+   * 
+   */
+  _assignValues(){
+    let _t = this;
+    // reassign selected_obj here, because this method
+    // if call by other as well, it will refresh values of seleccted obj
+    this.config.config.infra.object.forEach((k)=>{
+      if(k.name == _t.object.name){
+        _t.object = k;
+        _t._id = k._id;
+      }
+    });
+    // assign defaults or values from db
+    this.object.fields.forEach(function (k) {
+      //_t.el[k.name] = k.default_value;
     });
   }
 
