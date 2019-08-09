@@ -9,6 +9,7 @@ import {infra} from '../../../assets/infra';
 export class PortalComponent implements OnInit {
 
   defaults :any;
+  
   constructor() {
     this.defaults = infra;
    }

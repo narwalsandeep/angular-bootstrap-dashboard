@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BusinessService } from '../../../_service/business.service';
 import { AlertService } from '../../../_service/_alert.service';
+import { ModalComponent } from '../../../_com/modal/modal.component';
 
 @Component({
   selector: 'app-master-object-form',
@@ -10,10 +11,12 @@ import { AlertService } from '../../../_service/_alert.service';
 })
 export class FormComponent implements OnInit {
 
+  @ViewChild(ModalComponent, { static: true }) modal: ModalComponent;
 
+  @Output() refreshConfig = new EventEmitter<boolean>();
   default = { "icon":"","parent":"","label":"","name": "", "status": "Active","type": "form" };
   @Input() object: any;
-  is_editing_object = false;
+  is_editing = false;
 
   constructor(
     private router: Router,
@@ -31,7 +34,7 @@ export class FormComponent implements OnInit {
     if (changes['object'] != undefined) {
       if (changes['object'].currentValue != undefined){
         this.object = changes['object'].currentValue;
-        this.is_editing_object = true;
+        this.is_editing = true;
       }
       else{
         this.object = this.default;
@@ -41,7 +44,7 @@ export class FormComponent implements OnInit {
 
   onClick_Submit() {
     if (this._validate()) {
-      let _p = { "edit": this.is_editing_object, "inject_into_object": true, "object": JSON.stringify(this.object) };
+      let _p = { "edit": this.is_editing, "inject_into_object": true, "object": JSON.stringify(this.object) };
       this.businessService.updateConfig(_p).subscribe(data => {
         let temp: any;
         temp = data;
@@ -51,12 +54,35 @@ export class FormComponent implements OnInit {
         else {
           this._alert.success(temp.msg);
         }
+        this.refreshConfig.emit(true);
       },
-        error => {
-          this._alert.error("Server Error");
-        });
+      error => {
+        this._alert.error("Server Error");
+      });
     }
   }
+
+   /**
+   * 
+   * @param f 
+   */
+  onClick_TryDelete() {
+    this.modal.show();
+  }
+
+  /**
+   * 
+   */
+  onClick_DeleteObject() {
+    let _p = { "delete_object": true,  "object": JSON.stringify(this.object) };
+    let _t = this;
+    this.businessService.updateConfig(_p).subscribe(data => {
+      let temp: any;
+      temp = data;
+      //_t._getBusiness();
+    });
+  }
+
 
   _validate() {
     if (this.object.name == "") {

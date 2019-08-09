@@ -4,7 +4,7 @@
       <div class="sidebar-sticky">
         <h3 class="h5 justify-content-between
           text text-center px-4 mt-2">
-          <span><strong class="text text-primary">nu</strong>.CRM</span>
+          <span><strong class="text text-primary">nu</strong>.CMS</span>
         </h3>
         <hr>
         <h6 class="sidebar-heading d-flex justify-content-between
@@ -20,7 +20,7 @@
               <fa name="line-chart"></fa> Dashboard
             </a>
           </li>
-          <li class="nav-item" *ngFor="let d of defaults.config.infra.process">
+          <li class="nav-item" *ngFor="let d of defaults.config.infra.object">
             <a class="nav-link" [routerLink]="['/portal/page',{'i':d.name}]">
               <fa name="{{d.icon}}"></fa> {{d.label}}
             </a>

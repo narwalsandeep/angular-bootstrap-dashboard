@@ -1,113 +1,77 @@
 export const infra = {
-	"name":"business name",
-	"address":"address",
-	"users":[
+	"name": "business name",
+	"users": [
 		{
-			"username":"email here",
-			"user_type":"admin"
+			"username": "email here",
+			"user_type": "admin"
 		}
 	],
-	"config":{
-		"infra":{
-			"process":[
+	"config": {
+		"infra": {
+			"acl": [
 				{
-					"sort":1,
-					"name":"lead",
-					"icon":"arrow-right",
-					"label":"Leads",
-					"fields":[
+					"username": "email here",
+					"permissions": [
 						{
-							"type":"text",
-							"name":"full_name",
-							"label":"Customer Name",
-							"required":true,
-							"default_value":"",
-							"placeholder":"Enter name here",
-							"max-length":100,
-							"sort":1
-						}
-					]
-				},
-				{
-					"sort":2,
-					"name":"quote",
-					"icon":"file-text-o",
-					"label":"Quotes",
-					"fields":[
-						{
-							"type":"textarea",
-							"name":"description",
-							"label":"Description",
-							"required":true,
-							"default_value":"",
-							"placeholder":"Enter description",
-							"max-length":100,
-							"sort":1
-						}
-					]
-				},
-				{
-					"sort":3,
-					"name":"order",
-					"icon":"check-square-o",
-					"label":"Orders",
-					"fields":[
-						{
-							"type":"select",
-							"name":"user_type",
-							"label":"User Type",
-							"required":true,
-							"options":[{"name":"Admin","label":"Admin"},{"name":"User","label":"User"}],
-							"default_value":"User",
-							"sort":1
-						}
-					]
-				},
-				{
-					"sort":4,
-					"name":"job-card",
-					"icon":"industry",
-					"label":"Job Cards",
-					"fields":[
-						{
-							"type":"checkbox",
-							"name":"active",
-							"label":"Activate This Lead",
-							"default_value":true,
-							"sort":1
-						}
-					]
-				},
-				{
-					"sort":5,
-					"name":"dispatch",
-					"icon":"truck",
-					"label":"Dispatches",
-					"fields":[
-						{
-							"type":"checkbox",
-							"name":"active",
-							"label":"Activate This Lead",
-							"default_value":true,
-							"sort":1
+							"read": true,
+							"step": 1,
+							"create": true,
+							"delete": false,
+							"update": true
 						}
 					]
 				}
 			],
-			"acl":[
+			"object": [
 				{
-					"username":"email here",
-					"permissions":[
+					"_id": "a855f7079a7ba934",
+					"icon":"arrow-right",
+					"name": "quotesbb",
+					"type": "form",
+					"label": "Quotesd",
+					"fields": [
 						{
-							"step":1,
-							"create":true,
-							"read":true,
-							"update":true,
-							"delete":false
+							"_id": "137c563c6583b953",
+							"name": "firstname",
+							"size": "col-6",
+							"type": "text",
+							"label": "First Namew",
+							"readonly": "false",
+							"required": false,
+							"maxlength": 120,
+							"placeholder": "",
+							"default_value": ""
+						},
+						{
+							"_id": "9dd8f982292c1c05",
+							"name": "d",
+							"size": "col-3",
+							"type": "text",
+							"label": "ddw",
+							"readonly": "false",
+							"required": false,
+							"maxlength": 120,
+							"placeholder": "",
+							"default_value": ""
+						},
+						{
+							"_id": "7be9cafc65175c69",
+							"name": "njj",
+							"size": "col-6",
+							"type": "text",
+							"label": "bh",
+							"readonly": "false",
+							"required": false,
+							"maxlength": 120,
+							"placeholder": "",
+							"default_value": ""
 						}
-					]
+					],
+					"parent": "",
+					"status": "Active"
 				}
 			]
 		}
-	}
-};
+	},
+	"address": "address"
+}

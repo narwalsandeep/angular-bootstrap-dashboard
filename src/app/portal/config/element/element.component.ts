@@ -7,8 +7,8 @@ import { Component, OnInit, Input, SimpleChange, SimpleChanges } from '@angular/
 })
 export class ElementComponent implements OnInit {
 
-  @Input() config: any;
-  @Input() editing_el: any;
+  @Input() object: any;
+  @Input() element: any;
   selected_type = "text";
   el_list = [
     {
@@ -41,17 +41,18 @@ export class ElementComponent implements OnInit {
 
   ]
   constructor() {
-    // this.custom_el.sort();
   }
 
   ngOnInit() {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['editing_el'] != undefined)
-      this.editing_el = changes['editing_el'].currentValue;
-    if (changes['config'] != undefined)
-      this.config = changes['config'].currentValue;
+
+    if (changes['object'] != undefined)
+      this.object = changes['object'].currentValue;
+    if (changes['element'] != undefined)
+      this.element = changes['element'].currentValue;
+
   }
 
   onClick_CustomEl(e) {

@@ -42,4 +42,10 @@ export class ObjectComponent implements OnInit {
   onClick_CustomMenu(e) {
     this.selected = e.type;
   }
+
+  onRefreshConfig(e){
+    // emit from this to its parent to call business main config json, so it get refresh all over
+    // refreshConfig must be added as many places to its get refresh everywhere.
+    alert("i am here");
+  }
 }

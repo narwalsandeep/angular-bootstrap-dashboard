@@ -1,5 +1,3 @@
-<label class="text text-muted">Select an HTML element and configure it as per
-  your need.</label>
 <div class="row">
   <div class="col">
     <div class="form-check form-check-inline" *ngFor="let e of el_list">
@@ -16,7 +14,7 @@
 </div>
 <hr>
 <div class="" *ngIf="selected_type=='text'">
-  <app-textbox [config]="config" [editing_el]="editing_el"></app-textbox>
+  <app-textbox [object]="object" [element]="element"></app-textbox>
 </div>
 <div class="" *ngIf="selected_type=='dropdown'">
   <app-dropdown></app-dropdown>
@@ -43,5 +41,5 @@
   <app-time></app-time>
 </div>
 <div class="" *ngIf="selected_type=='currency'">
-  <app-currency [config]="config" [editing_el]="editing_el"></app-currency>
+  <app-currency ></app-currency>
 </div>

@@ -10,12 +10,11 @@ import { AlertService } from '../../../_service/_alert.service';
 })
 export class TextboxComponent implements OnInit {
 
-  
-  default = { "readonly":"false","size":"col-6","required": false, "maxlength": 120, "name": "", "label": "", "default_value": "", "placeholder": "", "type": "text" };
-  el: any;
-  @Input() config: any;
-  @Input() editing_el: any;
-  is_edit_mode = false;
+
+  default = { "readonly": "false", "size": "col-6", "required": false, "maxlength": 120, "name": "", "label": "", "default_value": "", "placeholder": "", "type": "text" };
+  @Input() object: any;
+  @Input() element: any;
+  is_editing = false;
 
   constructor(
     private router: Router,
@@ -24,43 +23,29 @@ export class TextboxComponent implements OnInit {
   ) {
 
     this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; };
-    this._reset();
   }
 
   ngOnInit() {
-    if (this.editing_el != undefined) {
-      this.el = this.editing_el;
-      this.is_edit_mode = true;
-    }
   }
 
-  _reset() {
-    this.el = this.default;
-  }
-  
+
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
-    if (changes['editing_el'] != undefined){
-      if(changes['editing_el'].currentValue != undefined)
-        this.editing_el = changes['editing_el'].currentValue;
+    if (changes['element'] != undefined) {
+      if (changes['element'].currentValue != undefined) {
+        this.element = changes['element'].currentValue;
+        this.is_editing = true;
+      }
+      else {
+        this.element = this.default;
+      }
     }
-    if (changes['config'] != undefined){
-      if(changes['config'].currentValue != undefined)
-        this.config = changes['config'].currentValue;
-    }
-    if (this.editing_el == undefined){
-      this._reset();
-    }
-    else{
-      this.el = this.editing_el;
-    }
-
+    console.log(this.element);
   }
 
 
   onClick_Submit() {
-    if(this._validate()){
-      let _p = { "edit": this.is_edit_mode, "inject_into_fields":true, "inject_into_el": "fields", "process_el": JSON.stringify(this.config), "el": JSON.stringify(this.el) };
+    if (this._validate()) {
+      let _p = { "edit": this.is_editing, "inject_into_fields": true, "object": JSON.stringify(this.object), "element": JSON.stringify(this.element) };
       this.businessService.updateConfig(_p).subscribe(data => {
         let temp: any;
         temp = data;
@@ -71,18 +56,18 @@ export class TextboxComponent implements OnInit {
           this._alert.success(temp.msg);
         }
       },
-        error => {
-          this._alert.error("Server Error");
-        });
+      error => {
+        this._alert.error("Server Error");
+      });
     }
   }
 
-  _validate(){
-    if(this.el.name == ""){
+  _validate() {
+    if (this.element.name == "") {
       this._alert.error("Name cannot be empty");
       return false;
     }
-    if(this.el.label == ""){
+    if (this.element.label == "") {
       this._alert.error("Label cannot be empty");
       return false;
     }
