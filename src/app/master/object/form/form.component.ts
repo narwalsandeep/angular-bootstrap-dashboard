@@ -79,7 +79,9 @@ export class FormComponent implements OnInit {
     this.businessService.updateConfig(_p).subscribe(data => {
       let temp: any;
       temp = data;
-      //_t._getBusiness();
+      this._alert.success(temp.msg);
+      this.refreshConfig.emit(true);
+
     });
   }
 

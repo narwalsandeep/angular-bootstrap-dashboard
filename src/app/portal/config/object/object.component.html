@@ -17,7 +17,21 @@
 	</div>
 	<div class="px-2">
 		<div class="" *ngIf="selected=='form'">
-			<app-master-object-form (refreshConfig)="onRefreshConfig($emit)" [object]="object"></app-master-object-form>
+			<app-master-object-form (refreshConfig)="onRefreshConfig($emit)"
+				[object]="object"></app-master-object-form>
 		</div>
+		<div class="" *ngIf="selected=='static'">
+			<app-master-object-form (refreshConfig)="onRefreshConfig($emit)"
+				[object]="object"></app-master-object-form>
+		</div>
+		<div class="" *ngIf="selected=='grid'">
+			<app-master-object-form (refreshConfig)="onRefreshConfig($emit)"
+				[object]="object"></app-master-object-form>
+		</div>
+		<div class="" *ngIf="selected=='code'">
+			<app-master-object-form (refreshConfig)="onRefreshConfig($emit)"
+				[object]="object"></app-master-object-form>
+		</div>
+
 	</div>
 </div>

@@ -20,7 +20,7 @@
   <div class="col-10" *ngIf="is_adding_object == true">
     <div class="row">
       <div class="col-12">
-        <app-object></app-object>
+        <app-object (refreshConfig)="onRefreshConfig($event)"></app-object>
       </div>
     </div>
   </div>
@@ -62,7 +62,7 @@
         <div class="border border-top-0 rounded-bottom">
           <div class="row">
             <div class="col ml-2  mr-2">
-              <app-object-settings [object]="object"></app-object-settings>
+              <app-object-settings (refreshConfig)="onRefreshConfig($event)" [object]="object"></app-object-settings>
             </div>
           </div>
         </div>

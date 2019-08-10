@@ -107,7 +107,7 @@ export class ConfigComponent implements OnInit {
     // reassign selected_obj here, because this method
     // if call by other as well, it will refresh values of seleccted obj
     this.config.config.infra.object.forEach((k)=>{
-      if(k.name == _t.object.name){
+      if(k._id == _t.object._id){
         _t.object = k;
         _t._id = k._id;
       }
@@ -118,7 +118,9 @@ export class ConfigComponent implements OnInit {
     });
   }
 
-
+  onRefreshConfig(){
+    this._getBusiness();
+  }
   /**
    * 
    */

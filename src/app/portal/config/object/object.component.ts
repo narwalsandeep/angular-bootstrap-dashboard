@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChange, SimpleChanges, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-object',
@@ -8,6 +8,8 @@ import { Component, OnInit, Input, SimpleChange, SimpleChanges } from '@angular/
 export class ObjectComponent implements OnInit {
 
   @Input() object: any;
+  @Output() refreshConfig = new EventEmitter<boolean>();
+
   selected = "form";
   types = [
     {
@@ -43,9 +45,10 @@ export class ObjectComponent implements OnInit {
     this.selected = e.type;
   }
 
+  // if chancing here, also change in settings component
   onRefreshConfig(e){
+    this.refreshConfig.emit(true);
     // emit from this to its parent to call business main config json, so it get refresh all over
     // refreshConfig must be added as many places to its get refresh everywhere.
-    alert("i am here");
   }
 }

@@ -36,7 +36,7 @@ export class PageComponent implements OnInit {
     let i = this.route.snapshot.paramMap.get("i");
     this.title = i.toUpperCase();
     let _t = this;
-    let pl = infra.config.infra.process;
+    let pl = infra.config.infra.object;
     this.fields = [];
     pl.forEach(function (v) {
       if (v.name == i) {
