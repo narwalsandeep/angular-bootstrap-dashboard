@@ -5,31 +5,83 @@
       text-muted"> Build your pages, processes, forms, fields, triggers, etc.</small></h4>
   <h4 class="h6" *ngIf="is_loading">loading ...</h4>
 </div>
+
 <div class="row no-gutters">
+
   <div class="col-2 col-lg-2 col-sm-2 col-md-2 px-2">
     <ul class="list-group">
-      <li class="text-center cursor bg-light list-group-item text text-primary"(click)="onClick_AddMenu()"><fa
+      <li class="text-center cursor bg-light list-group-item text text-primary"
+        (click)="onClick_AddObject()"><fa
           name="plus"></fa> Add</li>
-      <li class="pt-2 pl-2 pr-2 pb-2 list-group-item cursor"id="obj_{{p._id}}"
+      <li class="pt-2 pl-2 pr-2 pb-2 list-group-item cursor" id="obj_{{p._id}}"
         [class.active]="_id == p._id"
         (click)="onClick_Item(p)" *ngFor="let p
         of
         config?.config?.infra?.object">{{p.label}}</li>
     </ul>
   </div>
+
   <div class="col-10" *ngIf="is_adding_object == true">
-    <div class="row">
-      <div class="col-12">
-        <app-object (refreshConfig)="onRefreshConfig($event)"></app-object>
+    <div class="card mr-2">
+      <div class="card-header">
+        Add An Object (An object is basically a page)
+      </div>
+      <div class="card-body pl-2 pr-2">
+        <div class="col-12 form-group">
+          <label class="text text-muted">Select the type of object or page you want to
+            create. An object can be a form, static content, a piece of javascript code or a grid for image gallery.</label>
+          <div class="row">
+            <div class="col">
+              <div class="form-check form-check-inline" *ngFor="let m of types">
+                <input class="form-check-input" (click)="onClick_CustomMenu(m)"
+                  [(ngModel)]="selected" [value]="m.name" id="{{m.name}}"
+                  type="radio">
+                <label class="form-check-label" for="{{m.name}}">{{m.name}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 form-group">
+          <label>Label</label>
+          <input class="form-control" maxlength="100"
+            [(ngModel)]="object.label">
+          <small class="text text-muted">For example: Clients, Portfolio,
+            Gallery, etc
+            Line 1, etc</small>
+        </div>
+        <div class="col-12 form-group">
+          <label>Name</label>
+          <input class="form-control" mask="A*" maxlength="200"
+            [(ngModel)]="object.name">
+          <small class="text text-danger">Only alpha-numeric allowed. </small>
+          <small
+            class="text text-muted">For example: clients, portfolio, gallery,
+            etc
+            Line 1, etc</small>
+        </div>
+        <div class="col-4 form-group">
+          <label>Status</label>
+          <select class="form-control" [(ngModel)]="object.status">
+            <option value="Active">Active</option>
+            <option value="InActive">InActive</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button (click)="onClick_Submit()" class="float-left btn btn-primary">Submit</button>
+        <button (click)="onClick_TryDelete()" class="btn btn-outline-danger
+          float-right">Delete</button>
       </div>
     </div>
   </div>
-
+  <com-modal [forDelete]="true" (onSubmit)="onClick_DeleteObject()"></com-modal>
   <div class="col-10" *ngIf="is_object_selected == false && is_adding_object ==
     false">
     <div class="row col-12"><span class="alert alert-info">Please select an item
         from left.</span></div>
   </div>
+
   <div class="col-10 col-lg-10 col-md-10 col-sm-10 pr-2"
     *ngIf="is_object_selected == true">
     <nav>
@@ -38,7 +90,7 @@
           data-toggle="tab"
           href="#nav-settings" role="tab" aria-controls="nav-settings"
           aria-selected="false">Settings</a>
-        <a class="nav-item nav-link"id="nav-layout-tab"
+        <a class="nav-item nav-link" id="nav-layout-tab" å
           data-toggle="tab" href="#nav-layout" role="tab"
           aria-controls="nav-layout" aria-selected="true">Layout</a>
         <a class="nav-item nav-link" id="nav-triggers-tab" data-toggle="tab"
@@ -47,12 +99,12 @@
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade"id="nav-layout" role="tabpanel"
+      <div class="tab-pane fade" id="nav-layout" role="tabpanel"
         aria-labelledby="nav-layout-tab">
         <div class="border border-top-0 rounded-bottom">
           <div class="row">
             <div class="col ml-2 mr-2 mb-2">
-              <app-object-layout  [object]="object"></app-object-layout>
+              <app-object-layout [object]="object"></app-object-layout>
             </div>
           </div>
         </div>
@@ -61,8 +113,9 @@
         aria-labelledby="nav-settings-tab">
         <div class="border border-top-0 rounded-bottom">
           <div class="row">
-            <div class="col ml-2  mr-2">
-              <app-object-settings (refreshConfig)="onRefreshConfig($event)" [object]="object"></app-object-settings>
+            <div class="col ml-2 mr-2">
+              <app-object-settings (refreshConfig)="onRefreshConfig($event)"
+                [object]="object"></app-object-settings>
             </div>
           </div>
         </div>
@@ -71,11 +124,12 @@
         aria-labelledby="nav-triggers-tab">
         <div class="border border-top-0 rounded-bottom">
           <div class="row">
-            <div class="col ml-2  mr-2">
-                <app-object-triggers [object]="object"></app-object-triggers>
+            <div class="col ml-2 mr-2">
+              <app-object-triggers [object]="object"></app-object-triggers>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

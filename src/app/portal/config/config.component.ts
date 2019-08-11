@@ -23,11 +23,28 @@ export class ConfigComponent implements OnInit {
    * 
    */
   config:any;
+  object:any;
+  selected = "form";
+  types = [
+    {
+      "name": "form"
+    },
+    {
+      "name": "static"
+    },
+    {
+      "name": "grid"
+    },
+    {
+      "name":"code"
+    }
+  ]
+
   
   /**
    * 
    */
-  object:any;
+  default = {"label":"","name":"","status":"Active"};
   is_adding_object = false;
   is_object_selected = false;
   
@@ -69,6 +86,9 @@ export class ConfigComponent implements OnInit {
 
   }
 
+  onClick_CustomMenu(e) {
+    this.selected = e.name;
+  }
 
 
   /**
@@ -124,10 +144,65 @@ export class ConfigComponent implements OnInit {
   /**
    * 
    */
-  onClick_AddMenu(){
+  onClick_AddObject(){
     this._reset();
+    this.object = this.default;
     this.is_object_selected = false;
     this.is_adding_object = true;
+  }
+
+  onClick_Submit() {
+    if (this._validate()) {
+      let _p = { "inject_into_object": true, "object": JSON.stringify(this.object) };
+      this.businessService.updateConfig(_p).subscribe(data => {
+        let temp: any;
+        temp = data;
+        if (temp.error) {
+          this._alert.error(temp.msg);
+        }
+        else {
+          this._alert.success(temp.msg);
+        }
+      },
+      error => {
+        this._alert.error("Server Error");
+      });
+    }
+  }
+
+   /**
+   * 
+   * @param f 
+   */
+  onClick_TryDelete() {
+    this.modal.show();
+  }
+
+  /**
+   * 
+   */
+  onClick_DeleteObject() {
+    let _p = { "delete_object": true,  "object": JSON.stringify(this.object) };
+    let _t = this;
+    this.businessService.updateConfig(_p).subscribe(data => {
+      let temp: any;
+      temp = data;
+      this._alert.success(temp.msg);
+
+    });
+  }
+
+
+  _validate() {
+    if (this.object.name == "") {
+      this._alert.error("Name cannot be empty");
+      return false;
+    }
+    if (this.object.label == "") {
+      this._alert.error("Label cannot be empty");
+      return false;
+    }
+    return true;
   }
 
 }

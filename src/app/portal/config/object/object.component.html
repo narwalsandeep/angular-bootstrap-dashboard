@@ -7,7 +7,7 @@
 		<div class="row">
 			<div class="col">
 				<div class="form-check form-check-inline" *ngFor="let m of types">
-					<input class="form-check-input" (click)="onClick_CustomMenu(e)"
+					<input class="form-check-input" (click)="onClick_CustomMenu(m)"
 						[(ngModel)]="selected" [value]="m.name" id="{{m.name}}"
 						type="radio">
 					<label class="form-check-label" for="{{m.name}}">{{m.name}}</label>
@@ -20,18 +20,5 @@
 			<app-master-object-form (refreshConfig)="onRefreshConfig($emit)"
 				[object]="object"></app-master-object-form>
 		</div>
-		<div class="" *ngIf="selected=='static'">
-			<app-master-object-form (refreshConfig)="onRefreshConfig($emit)"
-				[object]="object"></app-master-object-form>
-		</div>
-		<div class="" *ngIf="selected=='grid'">
-			<app-master-object-form (refreshConfig)="onRefreshConfig($emit)"
-				[object]="object"></app-master-object-form>
-		</div>
-		<div class="" *ngIf="selected=='code'">
-			<app-master-object-form (refreshConfig)="onRefreshConfig($emit)"
-				[object]="object"></app-master-object-form>
-		</div>
-
 	</div>
 </div>

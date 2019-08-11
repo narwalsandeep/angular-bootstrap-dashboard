@@ -76,7 +76,13 @@ import { CurrencyComponent } from './master/element/currency/currency.component'
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SeparatorComponent } from './master/element/separator/separator.component';
 import { ObjectComponent as PortalConfigObjectComponent } from './portal/config/object/object.component';
+
 import { FormComponent as MasterObjectFormComponent } from './master/object/form/form.component';
+import { StaticComponent as MasterObjectStaticComponent } from './master/object/static/static.component';
+import { GridComponent  as MasterObjectGridComponent} from './master/object/grid/grid.component';
+import { CodeComponent as MasterObjectCodeComponent } from './master/object/code/code.component';
+
+
 import { LayoutComponent as PortalConfigObjectLayoutComponent } from './portal/config/object/layout/layout.component';
 import { SettingsComponent as PortalConfigObjectSettingsComponent } from './portal/config/object/settings/settings.component';
 import { TriggersComponent as PortalConfigObjectTriggersComponent } from './portal/config/object/triggers/triggers.component';
@@ -169,9 +175,12 @@ const customNotifierOptions: NotifierOptions = {
     SeparatorComponent,
     PortalConfigObjectComponent,
     MasterObjectFormComponent,
+    MasterObjectCodeComponent,
+    MasterObjectGridComponent,
+    MasterObjectStaticComponent,
     PortalConfigObjectLayoutComponent,
     PortalConfigObjectSettingsComponent,
-    PortalConfigObjectTriggersComponent
+    PortalConfigObjectTriggersComponent,
   ],
   imports: [
     BrowserModule,

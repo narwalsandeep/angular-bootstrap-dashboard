@@ -42,7 +42,7 @@ export class ObjectComponent implements OnInit {
   }
 
   onClick_CustomMenu(e) {
-    this.selected = e.type;
+    this.selected = e.name;
   }
 
   // if chancing here, also change in settings component
