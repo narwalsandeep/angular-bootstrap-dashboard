@@ -1,0 +1,120 @@
+<div class="container">
+	<a (click)="onClick_Home()" [routerLink]="['/']"
+		routerLinkActive="router-link-active" routerLinkActive="router-link-active"><img
+			src="/assets/logo.png" class='responsive pt-2 pb-2' height="80"></a>
+	<form class="float-right form-inline pt-4">
+		<span class="float-right mr-3"><fa class="fa-2x text-secondary"
+				name="twitter"></fa></span>
+		<span class="float-right mr-5"><fa class="fa-2x text-secondary"
+				name="youtube-play"></fa></span>
+		<input class="form-control form-control-sm mr-sm-2" type="search"
+			placeholder="Search"
+			aria-label="Search">
+		<button class="btn btn-outline-secondary btn-sm" type="submit">Go</button>
+	</form>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+		aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="container collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav nav-fill w-100 mr-auto">
+			<li class="nav-item active" *ngFor="let m of menu">
+				<a class="nav-link" href="javascript:void(0);"
+					(click)="onClick_MainMenu(m)">{{m.label}}</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<div class="container">
+	<div class="rounded pl-2 mt-2 pt-2 pb-2">
+		<fa class="fa text-success" name="angle-double-right"></fa>
+		Home
+		<fa class="fa text-success" name="angle-double-right"></fa>
+		{{active_menu.label}}
+	</div>
+	<div [innerHtml]="active_menu.html" class="pt-2 pb-4 mt-2 mb-5"></div>
+</div>
+
+<div class="container-fluid">
+	<div class="row bg-secondary">
+		<div class="container">
+			<div class="col-12 pt-2 pb-2">
+				<strong class="text text-white"> Stay up to date with out Apps</strong>
+			</div>
+		</div>
+	</div>
+	<div class="row bg-secondary">
+		<div class="container">
+			<div class="row text text-center">
+				<div class="col-2">
+					<div class="ml-2 mr-2 mt-4 mb-4 text text-center shadow border rounded
+						bg-light">
+						<fa class="text text-success fa-3x" name="cubes"></fa>
+						<h6 class="text text-success">Leap Top-up</h6>
+					</div>
+				</div>
+				<div class="col-2">
+					<div class="ml-2 mr-2 mt-4 mb-4 text text-center shadow border rounded
+						bg-light">
+						<fa class="text text-success fa-3x" name="cubes"></fa>
+						<h6 class="text text-success">Journey Planner</h6>
+					</div>
+				</div>
+				<div class="col-2">
+					<div class="ml-2 mr-2 mt-4 mb-4 text text-center shadow border rounded
+						bg-light">
+						<fa class="text text-success fa-3x" name="cubes"></fa>
+						<h6 class="text text-success">Real Time</h6>
+					</div>
+				</div>
+				<div class="col-2">
+					<div class="ml-2 mr-2 mt-4 mb-4 text text-center shadow border rounded
+						bg-light">
+						<fa class="text text-success fa-3x" name="cubes"></fa>
+						<h6 class="text text-success">Taxi Driver Check</h6>
+					</div>
+				</div>
+				<div class="col-2">
+					<div class="ml-2 mr-2 mt-4 mb-4 text text-center shadow border rounded
+						bg-light">
+						<fa class="text text-success fa-3x" name="cubes"></fa>
+						<h6 class="text text-success">Cycle Planner</h6>
+					</div>
+				</div>
+				<div class="col-2">
+					<div class="ml-2 mr-2 mt-4 mb-4 text text-center bg-secondary">
+						<button class="btn btn-md btn-outline-secondary mt-4">Find our more ..</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row bg-dark">
+		<div class="container pt-5 pb-5">
+			<div class="row">
+				<div class="col-2">
+					<img src="/assets/logo2.png" class='responsive' height="80">
+				</div>
+				<div class="col-2">
+					<img src="/assets/logo3.png" class='responsive' height="80">
+				</div>
+				<div class="col-8 mt-4">
+					<a class="btn mr-2 ml-2 text-light" href=""><small>Contact</small></a>
+					<a class="btn mr-2 ml-2 text-light" href=""><small>Privacy</small></a>
+					<a class="btn mr-2 ml-2 text-light" href=""><small>Web Accessibility</small></a>
+					<a class="btn mr-2 ml-2 text-light" href=""><small>Terms & Conditions</small></a>
+					<a class="btn mr-2 ml-2 text-light" href=""><small>News</small></a>
+					<a class="btn mr-2 ml-2 text-light" href=""><small>Events</small></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

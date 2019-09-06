@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './_guard/auth.guard';
 import { MasterComponent } from './_layout/master/master.component';
 import { PortalComponent } from './_layout/portal/portal.component';
+import { CmsComponent as CmsLayoutComponent } from './_layout/cms/cms.component';
 import { SigninComponent as SigninLayoutComponent } from './_layout/signin/signin.component';
 
 import { MainComponent as PortalDashboardMainComponent } from './portal/dashboard/main/main.component';
@@ -21,16 +22,13 @@ import { SecurityComponent as SuSecurityComponent } from './su/security/security
 
 import { SignoutComponent } from './auth/signout/signout.component';
 import { SigninComponent } from './auth/signin/signin.component';
+import { CmsComponent } from './cms/cms.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: "auth",
     component: SigninLayoutComponent,
     children:[
-      {
-        path: "",
-        component: SigninComponent
-      },
       {
         path: "signin",
         component: SigninComponent
@@ -38,6 +36,16 @@ const routes: Routes = [
       {
         path: "signout",
         component: SignoutComponent
+      }
+    ]
+  },
+  {
+    path:"",
+    component: CmsLayoutComponent,
+    children:[
+      {
+        path:"",
+        component:CmsComponent
       }
     ]
   },

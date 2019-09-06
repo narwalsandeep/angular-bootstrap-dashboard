@@ -1,1 +1,15 @@
-<p>static works!</p>
+<div class="pt-3 mt-2">
+	<div class="form-group">
+		<label>Add your HTML contents below for the page.</label>
+		<angular-editor [placeholder]="'Enter text here...'" [config]="editorConfig" [(ngModel)]="content"></angular-editor>
+	</div>
+</div>
+<label class="">Preview:</label>
+<div [innerHTML]="content" class="pt-4 pb-4 mt-2 pl-4 pr-4 shadow rounded border">
+</div>
+<hr>
+<div class="mt-2">
+	<div class="form-group">
+		<button (click)="onClick_Submit()" class="btn btn-primary">Submit</button>
+	</div>
+</div>

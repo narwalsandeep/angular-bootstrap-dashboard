@@ -39,7 +39,7 @@ export class CurrencyComponent implements OnInit {
   }
   
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
+    //console.log(changes);
     if (changes['editing_el'] != undefined){
       if(changes['editing_el'].currentValue != undefined)
         this.editing_el = changes['editing_el'].currentValue;

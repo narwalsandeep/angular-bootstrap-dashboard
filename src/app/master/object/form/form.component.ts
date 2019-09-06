@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, SimpleChanges, ViewChild, Output, EventEmitter } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild, Input, SimpleChanges } from '@angular/core';
 import { BusinessService } from '../../../_service/business.service';
+import { AuthHelper } from '../../../_helper/auth';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AlertService } from '../../../_service/_alert.service';
 import { ModalComponent } from '../../../_com/modal/modal.component';
 
@@ -13,88 +15,143 @@ export class FormComponent implements OnInit {
 
   @ViewChild(ModalComponent, { static: true }) modal: ModalComponent;
 
-  @Output() refreshConfig = new EventEmitter<boolean>();
-  default = { "icon":"","parent":"","label":"","name": "", "status": "Active","type": "form" };
   @Input() object: any;
-  is_editing = false;
+  element:any;
+  el_list = [];
+  fields: any;
+  is_adding_element = false;
+  _bool = [{ "value": true }, { "value": false }];
 
+  /**
+   * 
+   * @param businessService 
+   */
   constructor(
-    private router: Router,
+    private businessService: BusinessService,
+    private authHelper: AuthHelper,
     private _alert: AlertService,
-    private businessService: BusinessService
+    private router: Router
   ) {
-
     this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; };
+    // this._assignValues();
+
   }
 
   ngOnInit() {
+    this.fields = this.object.fields;
+    //console.log("f");
+    //console.log(this.fields);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['object'] != undefined) {
-      if (changes['object'].currentValue != undefined){
-        this.object = changes['object'].currentValue;
-        this.is_editing = true;
-      }
-      else{
-        this.object = this.default;
-      }
+      this.object = changes['object'].currentValue;
+      this._assignValues();
     }
   }
 
-  onClick_Submit() {
-    if (this._validate()) {
-      let _p = { "edit": this.is_editing, "inject_into_object": true, "object": JSON.stringify(this.object) };
-      this.businessService.updateConfig(_p).subscribe(data => {
-        let temp: any;
-        temp = data;
-        if (temp.error) {
-          this._alert.error(temp.msg);
-        }
-        else {
-          this._alert.success(temp.msg);
-        }
-        this.refreshConfig.emit(true);
-      },
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.object.fields, event.previousIndex, event.currentIndex);
+    if (event.previousIndex != event.currentIndex) {
+      this.onFieldReorder(event);
+    }
+    else {
+      this._alert.error("Nothing changed");
+    }
+  }
+
+  onFieldReorder(event) {
+
+    let _p = { "sort_fields": true, "from": event.previousIndex, "to": event.currentIndex, "object": JSON.stringify(this.object), "element": JSON.stringify(this.element) };
+    
+    this.businessService.updateConfig(_p).subscribe(data => {
+      let temp: any;
+      temp = data;
+      if (temp.error) {
+        this._alert.error(temp.msg);
+      }
+      else {
+        this._alert.success(temp.msg);
+      }
+    },
       error => {
         this._alert.error("Server Error");
       });
-    }
   }
 
-   /**
+
+  /**
+   * 
+   */
+  _assignValues() {
+    let _t = this;
+
+    // assign defaults or values from db
+    this.object.fields.forEach(function (k) {
+      _t.el_list[k.name] = k.default_value;
+    });
+  }
+
+  /**
+   * 
+   */
+  onClick_AddElement() {
+    this.is_adding_element = true;
+    //console.log(this.object);
+    //console.log(this.element);
+  }
+
+  /**
    * 
    * @param f 
    */
-  onClick_TryDelete() {
+  onClick_EditElement(f) {
+    this.element = f;
+    this.is_adding_element = true;
+  }
+
+  onClick_BackFromAddElement(){
+    this.is_adding_element = false;
+    this._getBusiness();
+  }
+
+  /**
+   * 
+   * @param f 
+   */
+  onClick_TryDelete(f) {
+    this.element = f;
     this.modal.show();
   }
 
   /**
    * 
    */
-  onClick_DeleteObject() {
-    let _p = { "delete_object": true,  "object": JSON.stringify(this.object) };
+  onClick_DeleteField() {
+    let _p = { "delete_field": true, "element": JSON.stringify(this.element), "object": JSON.stringify(this.object) };
     let _t = this;
     this.businessService.updateConfig(_p).subscribe(data => {
       let temp: any;
       temp = data;
-      this._alert.success(temp.msg);
-      this.refreshConfig.emit(true);
+      _t._getBusiness();
+    });
+  }
 
+  /**
+  * 
+  */
+  _getBusiness() {
+    let _p = { "id": this.authHelper.getUser().business.id };
+    let _t = this;
+    this.businessService.read(_p).subscribe(function (data) {
+     //let temp: any;
+     //  temp = data;
+     //    let _id = _t.object;
+     //      _t.object = JSON.parse(temp.payload.config.infra.object);
     });
   }
 
 
-  _validate() {
-    if (this.object.name == "") {
-      this._alert.error("Name cannot be empty");
-      return false;
-    }
-    if (this.object.label == "") {
-      this._alert.error("Label cannot be empty");
-      return false;
-    }
-    return true;
-  }
+
 }

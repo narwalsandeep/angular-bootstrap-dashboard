@@ -75,17 +75,23 @@ import { FileComponent } from './master/element/file/file.component';
 import { CurrencyComponent } from './master/element/currency/currency.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SeparatorComponent } from './master/element/separator/separator.component';
-import { ObjectComponent as PortalConfigObjectComponent } from './portal/config/object/object.component';
 
 import { FormComponent as MasterObjectFormComponent } from './master/object/form/form.component';
 import { StaticComponent as MasterObjectStaticComponent } from './master/object/static/static.component';
 import { GridComponent  as MasterObjectGridComponent} from './master/object/grid/grid.component';
 import { CodeComponent as MasterObjectCodeComponent } from './master/object/code/code.component';
 
-
 import { LayoutComponent as PortalConfigObjectLayoutComponent } from './portal/config/object/layout/layout.component';
 import { SettingsComponent as PortalConfigObjectSettingsComponent } from './portal/config/object/settings/settings.component';
 import { TriggersComponent as PortalConfigObjectTriggersComponent } from './portal/config/object/triggers/triggers.component';
+import { CreateComponent as PortalConfigObjectCreateComponent } from './portal/config/object/create/create.component';
+
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { CmsComponent } from './cms/cms.component';
+import { CmsComponent as CmsLayoutComponent } from './_layout/cms/cms.component';
+import { CreateComponent } from './portal/config/menu/create/create.component';
+
+import { NgxTreeDndModule } from 'ngx-tree-dnd'; // here
 
 
 const customNotifierOptions: NotifierOptions = {
@@ -173,7 +179,6 @@ const customNotifierOptions: NotifierOptions = {
     FileComponent,
     CurrencyComponent,
     SeparatorComponent,
-    PortalConfigObjectComponent,
     MasterObjectFormComponent,
     MasterObjectCodeComponent,
     MasterObjectGridComponent,
@@ -181,6 +186,10 @@ const customNotifierOptions: NotifierOptions = {
     PortalConfigObjectLayoutComponent,
     PortalConfigObjectSettingsComponent,
     PortalConfigObjectTriggersComponent,
+    PortalConfigObjectCreateComponent,
+    CmsComponent,
+    CmsLayoutComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
@@ -188,6 +197,8 @@ const customNotifierOptions: NotifierOptions = {
     OrderModule,
     AppRoutingModule,
     Ng2SmartTableModule,
+    AngularEditorModule,
+    NgxTreeDndModule,
     HttpClientModule,
     DragDropModule,
     AngularFontAwesomeModule,

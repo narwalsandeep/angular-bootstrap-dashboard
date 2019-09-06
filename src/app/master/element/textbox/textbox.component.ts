@@ -39,7 +39,7 @@ export class TextboxComponent implements OnInit {
         this.element = this.default;
       }
     }
-    console.log(this.element);
+    //console.log(this.element);
   }
 
 

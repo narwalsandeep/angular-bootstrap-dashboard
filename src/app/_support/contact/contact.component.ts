@@ -29,7 +29,7 @@ export class ContactComponent implements OnInit {
       if(auth.isLoggedIn()){
         this.is_loggedin = true;
         var _u = this.auth.getUser();
-        console.log(_u);
+        //console.log(_u);
         this.company = _u.business.name;
         this.full_name = _u.first_name+" "+_u.last_name;
         this.mobile = _u.mobile;

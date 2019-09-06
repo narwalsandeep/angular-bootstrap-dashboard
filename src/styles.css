@@ -2,8 +2,21 @@
 
 body {
 	font-size: .875rem;
+  }  
+  .tree-content-main,.tree-title{
+	  margin-left:0px;
+	  padding-left:12px;
+	  border:0px;
   }
-  
+  .tree-content{
+	  border:0px;
+	  margin-left: 12px;
+  }
+  .tree-title::before{
+	  background-color: #999;
+	  height:2px;
+	  width:8px;
+  }
   .feather {
 	width: 16px;
 	height: 16px;
