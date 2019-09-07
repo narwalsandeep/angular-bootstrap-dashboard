@@ -13,8 +13,33 @@ import { ModalComponent } from '../../../../_com/modal/modal.component';
 })
 export class CreateComponent implements OnInit {
 
+  @Input() menu:any;
+  @Input() edit = false;
+  /**
+  export interface TreeModel {
+    name: string; // name of item
+    id: number; // id of item
+    options?: TreeItemOptions; // options of item
+    childrens: TreeModel[]; // childrens list
+  }
+  export interface TreeItemOptions {
+      // item options
+      href?: string;
+      hidden?: boolean;
+      hideChildrens?: boolean;
+      draggable?: boolean;
+      position?: number;
+      edit?: boolean;
+      disabled?: boolean;
+      // item buttons
+      showDropChildZone?: boolean;
+      showActionButtons?: boolean;
+      showDeleteButton?: boolean;
+      showExpandButton?: boolean;
+  }
+  */
+
   title = "";
-  menu = {"name":"","label":"","status":"Active","type":"internale","link":""};
   types = [
     {
       "name": "internal",
@@ -40,6 +65,11 @@ export class CreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.menu);
+  }
+
+  ngOnChanges(changes:SimpleChanges){
+    console.log(changes);
   }
 
   onClick_Type(e) {
@@ -67,16 +97,12 @@ export class CreateComponent implements OnInit {
   }
 
 
-
   _validate() {
     if (this.menu.name == "") {
       this._alert.error("Name cannot be empty");
       return false;
     }
-    if (this.menu.label == "") {
-      this._alert.error("Label cannot be empty");
-      return false;
-    }
+    
     return true;
   }
 

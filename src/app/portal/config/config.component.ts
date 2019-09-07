@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AlertService } from '../../_service/_alert.service';
 import { ModalComponent } from '../../_com/modal/modal.component';
+import { AstMemoryEfficientTransformer } from '@angular/compiler';
 
 @Component({
   selector: 'app-config',
@@ -16,50 +17,36 @@ export class ConfigComponent implements OnInit {
   @ViewChild(ModalComponent, { static: true }) modal: ModalComponent;
 
   treeConfig = {
-    showActionButtons: false,
+    showActionButtons: true,
     showAddButtons: false,
     showRenameButtons: false,
     showDeleteButtons: false,
     showRootActionButtons: false, // set false to hide root action buttons.
-    enableExpandButtons: false,
+    enableExpandButtons: true,
     enableDragging: true,
-    rootTitle: 'Company Tree',
-    validationText: 'Enter valid company',
+    rootTitle: 'Menus Items:',
+    validationText: '',
     minCharacterLength: 5,
     setItemsAsLinks: false,
     setFontSize: 14,
     setIconSize: 12
   };
 
+  /*
   myTree = [
     {
       name: 'Apple',
+      childrens:[],
       id: 1,
       options: {
         hidden: false,
         position: 1,
         href: 'https://github.com/Zicrael/ngx-tree-dnd'
-      },
-      childrens: [
-        {
-          name: 'Iphone',
-          id: 2,
-          childrens: []
-        }
-      ]
-    },
-    {
-      name: 'Google',
-      id: 3,
-      childrens: [
-        {
-          name: 'Google play',
-          id: 4,
-          childrens: []
-        }
-      ]
+      }
     }
   ];
+  */
+  menuTree:any;
 
   title = "";
   is_loading = false;
@@ -70,15 +57,17 @@ export class ConfigComponent implements OnInit {
    */
   config: any;
   object: any;
-  menu: any;
+  menu:any;
+  menu_default = {"_id":"","name":"","status":"Active","type":"internal","link":"","level":1,"children":[]};
 
   /**
    * 
    */
-  default = { "label": "", "name": "", "status": "Active", "home": "No", "parent": "root" };
+  object_default = { "label": "", "name": "", "status": "Active", "home": "No", "parent": "root" };
   is_adding_object = false;
   is_object_selected = false;
   is_adding_menu = false;
+  is_editing_menu = false;
   is_menu_selected = false;
 
   /**
@@ -106,6 +95,7 @@ export class ConfigComponent implements OnInit {
    * 
    */
   ngOnInit() {
+    this.menu = this.menu_default;
   }
 
   /**
@@ -114,6 +104,9 @@ export class ConfigComponent implements OnInit {
   _reset() {
     this.is_object_selected = false;
     this.is_adding_object = false;
+    this.is_menu_selected = false;
+    this.is_adding_menu = false;
+    this.is_editing_menu = false;
     this.is_loading = false;
     this.title = "Configurator";
 
@@ -133,19 +126,7 @@ export class ConfigComponent implements OnInit {
     this._getBusiness();
   }
 
-  /**
-   * 
-   * @param p 
-   */
-  onClick_Menu(menu) {
-    this._reset();
-    this.is_menu_selected = true;
-    this.is_object_selected = false;
-    this.is_adding_object = false;
-    this.menu = menu;
-    this._getBusiness();
-  }
-
+  
   onDragStart(event) {
     console.log(event);
   }
@@ -153,17 +134,22 @@ export class ConfigComponent implements OnInit {
     console.log(event);
   }
   onAllowDrop(event) {
+    console.log(event);
   }
   onDragEnter(event) {
+    console.log(event);
   }
   onDragLeave(event) {
+    console.log(event);
   }
   onAddItem(event) {
     console.log(event);
   }
   onStartRenameItem(event) {
+    console.log(event);
   }
   onFinishRenameItem(event) {
+    console.log(event);
   }
   onStartDeleteItem(event) {
     console.log('start delete');
@@ -175,6 +161,20 @@ export class ConfigComponent implements OnInit {
     console.log('cancel delete');
   }
 
+  onClick_MenuItem(e){
+    this._reset();
+
+    this.menu._id = e.target.parentElement.parentElement.parentElement.parentElement.id;
+    console.log(this.menu);
+    this._startEditMenu();
+  }
+
+  _startEditMenu(){
+    
+    this.is_menu_selected = true;
+    this.is_adding_menu = false;
+    this.is_editing_menu = true;
+  }
 
   /**
    * 
@@ -186,6 +186,7 @@ export class ConfigComponent implements OnInit {
       let temp: any;
       temp = data;
       _t.config = JSON.parse(temp.payload.config);
+      _t._buildMenuTree();
       if (_t.is_object_selected) {
         _t._assignObjectValues();
       }
@@ -199,6 +200,29 @@ export class ConfigComponent implements OnInit {
   /**
    * 
    */
+  _buildMenuTree(){
+    let m = [];
+    let i:any;
+    this.config.config.infra.menu.forEach((k,l)=>{
+       i = {
+        name: k.name,
+        childrens:[],
+        id: k._id,
+        options: {
+          hidden: false,
+          position: l,
+          href: 'https://github.com/Zicrael/ngx-tree-dnd'
+        }
+      }
+      m.push(i);
+    });
+    this.menuTree = m;
+  }
+
+
+  /**
+   * 
+   */
   _assignObjectValues() {
     let _t = this;
     // reassign selected_obj here, because this method
@@ -208,10 +232,6 @@ export class ConfigComponent implements OnInit {
         _t.object = k;
         _t._id = k._id;
       }
-    });
-    // assign defaults or values from db
-    this.object.fields.forEach(function (k) {
-      //_t.el[k.name] = k.default_value;
     });
   }
 
@@ -228,10 +248,6 @@ export class ConfigComponent implements OnInit {
         _t._id = k._id;
       }
     });
-    // assign defaults or values from db
-    this.menu.forEach(function (k) {
-      //_t.el[k.name] = k.default_value;
-    });
   }
 
   onRefreshConfig() {
@@ -243,7 +259,7 @@ export class ConfigComponent implements OnInit {
    */
   onClick_AddObject() {
     this._reset();
-    this.object = this.default;
+    this.object = this.object_default;
     this.is_object_selected = false;
     this.is_adding_object = true;
     //
@@ -256,9 +272,10 @@ export class ConfigComponent implements OnInit {
    */
   onClick_AddMenu() {
     this._reset();
-    this.menu = this.default;
+    this.menu = this.menu_default;
     this.is_menu_selected = false;
     this.is_adding_menu = true;
+    this.is_editing_menu = false;
     //
     this.is_object_selected = false;
     this.is_adding_object = false;

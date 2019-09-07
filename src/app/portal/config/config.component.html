@@ -23,37 +23,35 @@
       <li class="text-center cursor bg-light list-group-item text text-primary"
         (click)="onClick_AddMenu()"><fa
           name="plus"></fa> Add Menu</li>
-      <li class="pt-2 pl-2 pr-2 pb-2 list-group-item cursor" id="obj_{{m._id}}"
-        [class.active]="_id == p._id"
-        (click)="onClick_Menu(p)" *ngFor="let m
-        of
-        config?.config?.infra?.menu">{{m.label}}</li>
+          <li class="pt-0 pl-2 pr-2 pb-2 list-group-item cursor" >
+              <lib-ngx-tree-component
+              (click)="onClick_MenuItem($event)"
+              [treeData]="menuTree"
+              (ondragstart)="onDragStart($event)"
+              (ondragenter)="onDragEnter($event)"
+              (ondragleave)="onDragLeave($event)"
+              (ondrop)="onDrop($event)"
+              (onallowdrop)="onAllowDrop($event)"
+              (onadditem)="onAddItem($event)"
+              (onStartDeleteItem)="onStartDeleteItem($event)"
+              (onFinishDeleteItem)="onFinishDeleteItem($event)"
+              (onCancelDeleteItem)="onCancelDeleteItem($event)"
+              (onStartRenameItem)="onStartRenameItem($event)"
+              (onFinishRenameItem)="onFinishRenameItem($event)"
+              [config]='treeConfig'>
+            </lib-ngx-tree-component>        
+          </li>
     </ul>
-    <lib-ngx-tree-component
-      [treeData]="myTree"
-      (ondragstart)="onDragStart($event)"
-      (ondragenter)="onDragEnter($event)"
-      (ondragleave)="onDragLeave($event)"
-      (ondrop)="onDrop($event)"
-      (onallowdrop)="onAllowDrop($event)"
-      (onadditem)="onAddItem($event)"
-      (onStartDeleteItem)="onStartDeleteItem($event)"
-      (onFinishDeleteItem)="onFinishDeleteItem($event)"
-      (onCancelDeleteItem)="onCancelDeleteItem($event)"
-      (onStartRenameItem)="onStartRenameItem($event)"
-      (onFinishRenameItem)="onFinishRenameItem($event)"
-      [config]='treeConfig'>
-    </lib-ngx-tree-component>
+
   </div>
 
-  <div class="col-10" *ngIf="is_adding_object ==
-    true">
+
+  <div class="col-10" *ngIf="is_adding_object">
     <app-object-create [object]="object"></app-object-create>
   </div>
 
-  <div class="col-10" *ngIf="is_adding_menu ==
-    true">
-    <app-menu-create></app-menu-create>
+  <div class="col-10" *ngIf="is_adding_menu || is_editing_menu">
+    <app-menu-create [edit]="is_editing_menu" [menu]="menu"></app-menu-create>
   </div>
 
   <div class="col-10 col-lg-10 col-md-10 col-sm-10 pr-2"

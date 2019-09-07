@@ -5,16 +5,18 @@ body {
   }  
   .tree-content-main,.tree-title{
 	  margin-left:0px;
-	  padding-left:12px;
+	  padding-left:8px;
 	  border:0px;
   }
   .tree-content{
+	  padding-left:0px;
 	  border:0px;
-	  margin-left: 12px;
+	  margin-left: 8px;
   }
   .tree-title::before{
-	  background-color: #999;
-	  height:2px;
+	  background-color: #666;
+	  height:1px;
+	  margin-left:-2px;
 	  width:8px;
   }
   .feather {

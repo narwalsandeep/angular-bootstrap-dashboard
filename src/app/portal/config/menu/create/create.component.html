@@ -18,16 +18,8 @@
 		</div>
 
 		<div class="col-12 form-group">
-			<label>Label</label>
-			<input class="form-control" maxlength="100"
-				[(ngModel)]="menu.label">
-			<small class="text text-muted">For example: Clients, Portfolio,
-				Gallery, etc
-				Line 1, etc</small>
-		</div>
-		<div class="col-12 form-group">
 			<label>Name</label>
-			<input class="form-control" mask="A*" maxlength="200"
+			<input class="form-control"  maxlength="200"
 				[(ngModel)]="menu.name">
 			<small class="text text-danger">Only alpha-numeric allowed. </small>
 			<small
@@ -42,12 +34,16 @@
 				<option value="InActive">InActive</option>
 			</select>
 		</div>
-		<div class="col-4 form-group">
+		<div class="col-4 form-group" *ngIf="menu.typ=='internal'">
 			<label>Select A Page To Link</label>
-			<select class="form-control" [(ngModel)]="menu.home">
+			<select class="form-control" [(ngModel)]="menu.link">
 				<option value="Yes">Yes</option>
 				<option value="No">No</option>
 			</select>
+		</div>
+		<div class="col-4 form-group" *ngIf="menu.typ=='external'">
+			<label>URL to link</label>
+			<input class="form-control">
 		</div>
 	</div>
 	<div class="card-footer">
