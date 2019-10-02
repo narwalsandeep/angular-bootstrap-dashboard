@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  server: 'http://api.com',
+  server: 'http://api.prod',
 
 };

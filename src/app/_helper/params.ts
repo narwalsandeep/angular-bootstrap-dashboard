@@ -1,7 +1,6 @@
 import { NullTemplateVisitor } from "@angular/compiler";
 import { HttpClientModule,HttpParams,HttpHeaders } from '@angular/common/http'; 
 import { headersToString } from "selenium-webdriver/http";
-import { AuthHelper } from '../_helper/auth';
 import { getDefaultService } from "selenium-webdriver/opera";
 
 export class ParamsHelper {
@@ -38,13 +37,6 @@ export class ParamsHelper {
         });
         return temp;
 
-    }
-
-    makeHeadersWithAuth(){
-        let auth = new AuthHelper();
-        let token = auth.getUser().auth_token;
-        let headers = new HttpHeaders().set('Authorization', 'Token '+token);
-        return headers;
     }
 
 }

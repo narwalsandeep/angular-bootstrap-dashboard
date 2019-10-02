@@ -38,9 +38,9 @@ export class UserService {
      * 
      * @param _p 
      */
-    createOrUpdate(_p) {
+    create(_p) {
         let body = this.paramsHelper.make(this._getBody(), _p);
-        return this.http.post(environment.server+"/user",body, { headers: this.paramsHelper.makeHeadersWithAuth() })
+        return this.http.post(environment.server+"/user",body)
               .pipe(map(data => {
                   return data;
               }));
@@ -50,69 +50,25 @@ export class UserService {
      * 
      * @param _p 
      */
-    readAll(_p = null){
-
-        return this.http.get(environment.server+"/user?user_type="+_p.user_type+"&business_id="+_p.business_id, { headers: this.paramsHelper.makeHeadersWithAuth() })
-            .pipe(map(data => {
-                return data;
-            }));
-
-    }
-
-    /**
-     * 
-     * @param _p 
-     */
     read(_p = null){
 
         let body = this.paramsHelper.make(this._getBody(),_p);
-        return this.http.get(environment.server+"/user/"+_p['id'], { headers: this.paramsHelper.makeHeadersWithAuth() })
+        return this.http.get(environment.server+"/user/"+_p['id'])
             .pipe(map(data => {
                 return data;
             }));
 
     }
 
-    /**
-     * 
-     * @param _p 
-     */
-    attachDevice(_p = null){
+    readAll(){
 
-        let body = this.paramsHelper.make(this._getBody(),_p);
-        return this.http.put(environment.server+"/user/attach-device",body, { headers: this.paramsHelper.makeHeadersWithAuth() })
-            .pipe(map(data => {
-                return data;
-            }));
-    }
-
-    /**
-     * 
-     * @param _p 
-     */
-    ejectDevice(_p = null){
-
-        let body = this.paramsHelper.make(this._getBody(),_p);
-        return this.http.put(environment.server+"/user/eject-device", body, { headers: this.paramsHelper.makeHeadersWithAuth() })
+        return this.http.get("https://reqres.in/api/users?page=2")
             .pipe(map(data => {
                 return data;
             }));
 
     }
 
-    /**
-     * 
-     * @param _p 
-     */
-    delete(_p = null){
-
-        let body = this.paramsHelper.make(this._getBody(),_p);
-        return this.http.delete(environment.server+"/user/"+_p['id'], { headers: this.paramsHelper.makeHeadersWithAuth() })
-            .pipe(map(data => {
-                return data;
-            }));
-
-    }
 
     
 }

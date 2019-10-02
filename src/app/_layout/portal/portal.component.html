@@ -4,7 +4,7 @@
       <div class="sidebar-sticky">
         <h3 class="h5 justify-content-between
           text text-center px-4 mt-2">
-          <span><strong class="text text-primary">nu</strong>.CMS</span>
+          <span>Demo.</span>
         </h3>
         <hr>
         <h6 class="sidebar-heading d-flex justify-content-between
@@ -16,59 +16,32 @@
         -->
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/portal/dashboard']">
-              <fa name="line-chart"></fa> Dashboard
+            <a class="nav-link" [routerLink]="['/']">
+              Home
             </a>
           </li>
-          <li class="nav-item" *ngFor="let d of defaults.config.infra.object">
-            <a class="nav-link" [routerLink]="['/portal/page',{'i':d.name}]">
-              <fa name="{{d.icon}}"></fa> {{d.label}}
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/player']">
+              Players
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/team']">
+              Teams
             </a>
           </li>
         </ul>
         <hr>
-        <h6 class="sidebar-heading d-flex justify-content-between
-          align-items-center px-3 mt-1 mb-1 text-muted">
-          <span>Global</span>
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/portal/config']">
-              <fa name="cubes"></fa> Config
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/portal/contact']">
-              <fa name="address-book-o"></fa> Contacts
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/portal/contact']">
-              <fa name="list-alt"></fa> Collections
-              <small>these are various master values</small>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/portal/settings']">
-              <fa name="cog"></fa> Settings
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/portal/security']">
-              <fa name="lock"></fa> Security
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text text-danger" [routerLink]="['/signout']">
-              <fa name="sign-out"></fa> Signout</a>
-          </li>
-        </ul>
       </div>
     </nav>
 
     <main class="col-md-9 ml-sm-auto col-lg-11 px-0">
-      <router-outlet></router-outlet>
+      <nav class="navbar navbar-light bg-light p-3 mb-4 border-bottom">
+        Some global menu or search bar..
+      </nav>
+      <div class="col">
+        <router-outlet></router-outlet>
+      </div>
     </main>
   </div>
 </div>
-<notifier-container></notifier-container>

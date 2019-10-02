@@ -1,0 +1,20 @@
+<h5>Home</h5>
+<hr>
+<div class="col-12">
+	<div class="alert alert-danger" *ngIf="is_error">{{error_msg}}</div>
+	<div class="form-group">
+		<label for="email">Email address</label>
+		<input type="email" class="form-control" id="email" [(ngModel)]="email"
+			placeholder="Enter email">
+	</div>
+	<div class="form-group">
+		<label for="pwd">Password</label>
+		<input type="password" class="form-control" id="pwd" [(ngModel)]="password"
+			placeholder="Password">
+	</div>
+	<div class="form-group form-check">
+		<input type="checkbox" class="form-check-input" id="checkbox">
+		<label class="form-check-label" for="checkbox">Check me out</label>
+	</div>
+	<button (click)="onClick_Submit()" class="btn btn-primary">Submit</button>
+</div>

@@ -1,0 +1,27 @@
+<h5>Players</h5>
+<hr>
+<div class="card shadow-sm">
+	<div class="table-responsive">
+		<table class="table table-bordered mb-0">
+			<thead class="bg-light">
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let p of players">
+					<td>
+						{{p.id}}
+					</td>
+					<td>{{p.first_name}}</td>
+					<td>{{p.last_name}}</td>
+					<td><a href="javascript:void(0)" (click)="onClick_Item(p)" class="btn btn-sm btn-info">View</a></td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+</div>

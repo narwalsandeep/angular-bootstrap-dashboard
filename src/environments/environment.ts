@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  server: 'http://api.crm.local',
+  server: 'http://api.dev',
 
 };
 

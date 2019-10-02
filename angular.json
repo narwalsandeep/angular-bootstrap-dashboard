@@ -45,10 +45,6 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/angular-notifier/styles.css",
-              "node_modules/ngx-smart-modal/ngx-smart-modal.css",
-              "node_modules/font-awesome/css/font-awesome.css",
-              "node_modules/ngx-tree-dnd/styles-tree-dnd.css",
               "src/styles.css"
             ],
             "scripts": [
