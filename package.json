@@ -33,7 +33,7 @@
     "feather-icons": "^4.21.0",
     "font-awesome": "^4.7.0",
     "moment": "*",
-    "moment-timezone": "^0.5.23",
+    "moment-timezone": "^0.5.35",
     "ng2-completer": "*",
     "ng2-smart-table": "^1.5.0",
     "ngx-color-picker": "^6.8.0",
